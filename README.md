@@ -33,7 +33,13 @@ PROJECT_ROOT
 │   │   ├── README.md
 │   │   └── src                       ModSecurity log source code
 │   ├── apache-nginx
-│   │   └── README.md
+│   │   ├── README.md
+│   │   ├── bin
+│   │   │   ├── accesslog
+│   │   │   └── errorlog
+│   │   └── src                       Apache log source code
+│   │       ├── accesslog
+│   │       └── errorlog
 │   ├── app
 │   │   └── README.md
 │   ├── iptables
