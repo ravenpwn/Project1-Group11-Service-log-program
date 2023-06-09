@@ -53,5 +53,5 @@ PROJECT_ROOT
 │   └── external-libs                 External libraries used
 ├── INSTALL.md
 ├── LICENSE
-└── README.md├── 
+└── README.md 
 ```
