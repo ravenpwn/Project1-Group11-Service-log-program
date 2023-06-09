@@ -1,7 +1,9 @@
 # INSTALL
 
-### Môi trường cài đặt
+To be updated...
 
-### Các thư viện sử dụng
+### Environment setup
 
-### Cài đặt triển khai
+### Required configuration
+
+### Installation Guideline
