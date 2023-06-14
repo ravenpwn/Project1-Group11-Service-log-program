@@ -32,7 +32,7 @@ public class Main {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String jsonString = gson.toJson(jsonObject);
         //specify the path of the output JSON file
-        String outputfile = "output.json";
+        String outputfile = "access.json";
         //write the Json string to the output
         try (FileWriter fileWriter = new FileWriter(outputfile)){
             fileWriter.write(jsonString);
