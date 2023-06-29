@@ -1,8 +1,8 @@
-package iptables;
+package regex;
 
 import java.util.HashMap;
 
-public class LogRegex {
+public class IptablesLogRegex {
 	private static HashMap<String,String> iptablesRegex = generateIptablesRegex();
 	
 	public static HashMap<String,String> getIptablesRegex() {

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import iptables.LogRegex;
+import regex.IptablesLogRegex;
 
 public class IptablesLog extends Log implements GetField{
 	private HashMap<String, ?> logLine = new HashMap<>() ;
@@ -21,7 +21,7 @@ public class IptablesLog extends Log implements GetField{
 
 	@Override
 	public ArrayList<String> getAllField() {
-		ArrayList<String> keys = (ArrayList<String>) LogRegex.getIptablesRegex().keySet();
+		ArrayList<String> keys = (ArrayList<String>) IptablesLogRegex.getIptablesRegex().keySet();
 		return keys;
 	}
 
