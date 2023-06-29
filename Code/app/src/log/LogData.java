@@ -6,6 +6,11 @@ import java.util.ArrayList;
 public class LogData {
 	private ArrayList<Log> data;
 	
+	
+	public  ArrayList<Log> getData() {
+		return data;
+	}
+	
 	public LogData(ArrayList<Log> log) {
 		data = log;
 	}
