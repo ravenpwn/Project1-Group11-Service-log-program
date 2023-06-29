@@ -29,7 +29,9 @@ public class CreateLog {
 				LinkedHashMap<String, String> map = new LinkedHashMap<>();
 				for (String attr: regexMap.keySet()) {
 					String value = Util.regexFind(regexMap.get(attr).getAsString(), s);
-					map.put(attr, value);			
+					if(!value.isEmpty() || attr.equals("Outgoing interface (OUT)") || attr.equals("Incoming interface (IN)")) {						
+						map.put(attr, value);			
+					}
 				}
 				Log iptableLog = new IptablesLog(map);
 				logList.add(iptableLog);

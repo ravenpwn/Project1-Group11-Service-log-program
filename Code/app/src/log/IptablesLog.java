@@ -37,4 +37,10 @@ public class IptablesLog extends Log implements GetField{
 		return null;
 	}
 
+	@Override
+	public String getSrcIp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
