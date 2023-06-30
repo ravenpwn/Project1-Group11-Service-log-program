@@ -59,10 +59,4 @@ public class CreateLog {
 		return logData;
 	}
 
-	public static void main(String[] args) {
-//		LogData data = CreateLog.createIptablesLog("./log/iptables.log");
-//		System.out.println(data.toString());
-		LogData data2 = CreateLog.createApacheLog("./src/util/access.json");
-		System.out.println(data2);
-	}
 }
