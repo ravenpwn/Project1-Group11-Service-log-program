@@ -22,7 +22,7 @@ public class CreateLog {
 	public static LogData createIptablesLog(String fileName) {
 		LogData logData;
 		String data = Util.readFile(fileName);
-		JsonObject regexMap = (JsonObject) Util.readJsonFile("regex/IptablesRegex.json");
+		JsonObject regexMap = Util.getIptablesRegexMap();
 		ArrayList<Log> logList = new ArrayList<>();
 
 		for (String s: data.split("\n")) {
