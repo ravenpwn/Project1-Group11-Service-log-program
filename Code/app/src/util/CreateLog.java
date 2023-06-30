@@ -1,5 +1,7 @@
 package util;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -13,10 +15,9 @@ import log.*;
 
 
 public class CreateLog {
-	public static LogData createApacheLog() {
-		return null;
-		
-	}
+//	public static JsonElement createApacheLog(String fileName) {
+
+//	}
 	
 	public static LogData createIptablesLog(String fileName) {
 		LogData logData;
@@ -41,5 +42,6 @@ public class CreateLog {
 		logData = new LogData(logList);
 		return logData;
 	}
+
 	
 }

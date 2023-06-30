@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="Controller.mainScreenController">
+   <top>
+      <AnchorPane prefHeight="160.0" prefWidth="638.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox>
+               <children>
+                  <Label text="Total Events" textFill="#66bc4e">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="Last 24h" textFill="#66bc4e">
+                     <HBox.margin>
+                        <Insets left="50.0" top="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="last 7 days" textFill="#66bc4e">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="100.0" top="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="This Month" textFill="#66bc4e">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="120.0" top="20.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutY="58.0">
+               <children>
+                  <Label text="Total">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="40.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="last24h">
+                     <HBox.margin>
+                        <Insets left="80.0" top="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="last7days">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="110.0" top="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="thismonth">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="130.0" top="20.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Line endX="148.79998779296875" endY="3.051757857974735E-6" startX="148.7999725341797" startY="167.30001831054688" />
+            <Line endX="148.79998779296875" endY="3.051757857974735E-6" layoutX="344.0" layoutY="-1.0" startX="148.7999725341797" startY="167.30001831054688" />
+            <Line endX="148.79998779296875" endY="3.051757857974735E-6" layoutX="161.0" startX="148.7999725341797" startY="167.30001831054688" />
+            <Line endX="523.3999633789062" endY="1.8000030517578125" layoutX="115.0" layoutY="167.0" startX="-110.19999694824219" startY="-1.52587890625E-5" />
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <LineChart BorderPane.alignment="CENTER">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+   </center>
+</BorderPane>
