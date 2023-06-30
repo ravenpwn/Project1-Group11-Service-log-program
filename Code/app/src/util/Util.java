@@ -12,6 +12,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 public class Util {
+	private static JsonObject iptablesRegexMap;
+	
 	public static String readFile(String filePath) {
 		FileReader file;
 		StringBuilder dataBuilder = new StringBuilder("");
@@ -46,5 +48,12 @@ public class Util {
 		    return matcher.group();
 		}
 		return "";
+	}
+
+	public static JsonObject getIptablesRegexMap() {
+		if (iptablesRegexMap == null) {
+			iptablesRegexMap = (JsonObject)readJsonFile("./regex/IptablesRegex.json");
+		}
+		return iptablesRegexMap;
 	}
 }
