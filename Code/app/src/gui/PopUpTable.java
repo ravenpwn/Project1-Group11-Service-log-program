@@ -2,16 +2,12 @@ package gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.JFrame;
+
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.util.Callback;
 import log.Log;
 import log.LogData;
 

@@ -17,7 +17,7 @@ public class TestPaneController {
 
     @FXML
     void btnPressed(ActionEvent event) throws IOException {
-    	PopUpTable popUpTable = new PopUpTable(CreateLog.createIptablesLog("./log/iptables.log"));
+    	PopUpTable popUpTable = new PopUpTable(CreateLog.createApacheLog("./src/util/access.json"));
     	BorderPane pane = popUpTable.createTableView();
 		Stage stage = new Stage();
 		Scene scene = new Scene(pane, 1024, 640);

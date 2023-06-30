@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.stream.JsonReader;
 public class Util {
 	private static JsonObject iptablesRegexMap;
 	
@@ -35,6 +34,7 @@ public class Util {
 	
 	public static JsonElement readJsonFile(String filePath) {
 		String data =  readFile(filePath);
+
 		Gson gson = new Gson();
 		JsonElement obj = gson.fromJson(data, JsonElement.class);
 		return obj;
