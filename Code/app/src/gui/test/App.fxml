@@ -80,7 +80,7 @@
             <StackPane fx:id="infoPane" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <ScrollPane prefHeight="200.0" prefWidth="200.0" />
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0" />
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0" visible="false" />
                   <TitledPane animated="false" text="untitled" visible="false" />
                </children>
             </StackPane>
