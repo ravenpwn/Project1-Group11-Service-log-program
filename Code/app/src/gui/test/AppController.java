@@ -198,10 +198,6 @@ public class AppController {
     }
     
     private void showTable(TableView<Log> tableView) {
-    	ScrollPane table1 = (ScrollPane) infoPane.getChildren().get(0);
-    	tableView.prefWidthProperty().bind(table1.widthProperty());
-        tableView.prefHeightProperty().bind(table1.heightProperty());
-    	table1.setContent(tableView);
-    	table1.setVisible(true);
+    	infoPane.getChildren().set(0, tableView);
 	}
 }
