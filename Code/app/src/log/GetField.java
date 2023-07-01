@@ -10,6 +10,9 @@ public interface GetField {
 	
 	ArrayList<String> getAllField();
 	
+	ArrayList<String> getMainField();
+	
 	String getSrcIp();
+	
 	
 }

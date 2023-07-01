@@ -40,4 +40,10 @@ public class ApacheAccessLog extends Log implements GetField {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<String> getMainField() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -8,8 +8,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import log.LogData;
+import util.CreateLog;
 
 public class Test extends Application{
+	private static LogData iptablesLogData = CreateLog.createIptablesLog("log/iptables.log");
+	public static LogData getIptablesLogData() {
+		return iptablesLogData;
+	}
 	@Override
 	public void start(Stage primaryStage) {
 	    try {
@@ -26,4 +32,5 @@ public class Test extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
+
 }

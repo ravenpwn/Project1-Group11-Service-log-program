@@ -22,6 +22,12 @@ public class LogData {
 		return data.get(0).getAllField();
 	}
 	
+	public ArrayList<String> getMainKeys() {
+		if(data == null) {
+			return null;
+		}
+		return data.get(0).getMainField();
+	}
 	
 	public ArrayList<Log> filterByDate(LocalDateTime dateTime) {
 		return null;

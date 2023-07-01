@@ -30,7 +30,7 @@ public class IptablesLog extends Log implements GetField{
 	public ArrayList<String> getAllField() {
 		return keys;
 	}
-
+	
 	@Override
 	public LocalDateTime getDate() {
 		// TODO Auto-generated method stub
@@ -41,6 +41,14 @@ public class IptablesLog extends Log implements GetField{
 	public String getSrcIp() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<String> getMainField() {
+		ArrayList<String> mainKeys = new ArrayList<>(Arrays.asList(
+				"Date", "Host name", "Log type", "MAC address (MAC)", "Source ip address (SRC)", "Destination ip address (DST)",
+				"Packet length (LEN)", "Protocol (PROTO)", "Source port (SPT)", "Destination port (DPT)"));
+		return mainKeys;
 	}
 	
 }
