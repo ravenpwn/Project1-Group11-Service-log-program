@@ -10,7 +10,7 @@ import log.*;
 
 
 public class CreateLog {
-	public static LogData createApacheLog(String fileName) {
+	public static LogData createApacheAccessLog(String fileName) {
 		LogData logData; 
 		JsonObject data = Util.readJsonFile(fileName).getAsJsonObject();
 		ArrayList<Log> logList = new ArrayList<>();
@@ -27,8 +27,33 @@ public class CreateLog {
 				map.put(key, value);
 				// so map will be a LinkedHashMap that contains all pair <key, value> in a log 
 			}
-			Log apacheLog = new ApacheLog(map);
-			logList.add(apacheLog);
+			Log apacheAccessLog = new ApacheAccessLog(map);
+			logList.add(apacheAccessLog);
+		}
+		logData = new LogData(logList);
+		return logData;
+		
+	}
+	
+	public static LogData createApacheErrorLog(String fileName) {
+		LogData logData; 
+		JsonObject data = Util.readJsonFile(fileName).getAsJsonObject();
+		ArrayList<Log> logList = new ArrayList<>();
+		// logList contains logLine in the form <key, value>
+		
+		for(String line: data.keySet()) {
+			// line is the index of each logLine
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			JsonObject logLine =  data.get(line).getAsJsonObject();
+			for(String key: logLine.keySet()) {
+				// key is field in a log
+				// value is the value of that key field
+				String value = logLine.get(key).toString();
+				map.put(key, value);
+				// so map will be a LinkedHashMap that contains all pair <key, value> in a log 
+			}
+			Log apacheErrorLog = new ApacheErrorLog(map);
+			logList.add(apacheErrorLog);
 		}
 		logData = new LogData(logList);
 		return logData;
