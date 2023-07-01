@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutY="-4.0" prefWidth="150.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" style="-fx-background-color: #1299f6;" text="Dashboard" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Separator />
+            <FlowPane orientation="VERTICAL" prefHeight="140.0">
+               <children>
+                  <Label fx:id="apacheLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" onMouseClicked="#apacheLabelClick" prefHeight="60.0" prefWidth="150.0" text="Apache Analyze">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </Label>
+                  <Button fx:id="apacheTableBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#apacheTablePressed" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #dddddd;" text="Table">
+                     <FlowPane.margin>
+                        <Insets />
+                     </FlowPane.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="apacheGraphBtn" layoutX="10.0" layoutY="70.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#apacheGraphBtnPressed" prefHeight="40.0" style="-fx-background-color: #dddddd;" text="Graph">
+                     <padding>
+                        <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </FlowPane>
+            <Separator />
+            <FlowPane layoutX="10.0" layoutY="68.0" orientation="VERTICAL" prefHeight="140.0">
+               <children>
+                  <Label fx:id="iptablesLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" onMouseClicked="#iptablesLabelClick" text="Iptables Analyze">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </Label>
+                  <Button fx:id="iptablesTableBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#iptablesTablePressed" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #dddddd;" text="Table">
+                     <FlowPane.margin>
+                        <Insets />
+                     </FlowPane.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="iptablesGraphBtn" layoutX="10.0" layoutY="70.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#iptablesGraphBtnPressed" prefHeight="40.0" style="-fx-background-color: #dddddd;" text="Graph">
+                     <padding>
+                        <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </FlowPane>
+            <Separator layoutX="10.0" layoutY="65.0" />
+            <FlowPane layoutX="10.0" layoutY="631.0" orientation="VERTICAL" prefHeight="135.0">
+               <children>
+                  <Label fx:id="modsecLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" onMouseClicked="#modsecLabelClick" prefWidth="150.0" text="Apache Analyze">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </Label>
+                  <Button fx:id="modsecTableBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modsecTablePressed" style="-fx-background-color: #dddddd;" text="Table">
+                     <FlowPane.margin>
+                        <Insets />
+                     </FlowPane.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="modsecGraphBtn" layoutX="10.0" layoutY="70.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modsecGraphBtnPressed" style="-fx-background-color: #dddddd;" text="Graph">
+                     <padding>
+                        <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </FlowPane>
+            <AnchorPane maxHeight="1.7976931348623157E308" prefHeight="486.0" prefWidth="150.0" />
+         </children>
+      </VBox>
+   </children>
+</Pane>
