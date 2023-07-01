@@ -1,0 +1,26 @@
+{
+  "line_1": {
+    "Timestamp": "Thu Jun 08 03:04:54 ICT 2023",
+    "configure": "mpm_event",
+    "Emerge_level": "notice",
+    "Process_id": "923",
+    "Thread_id": "139828146673536",
+    "Message": "AH00489: Apache/2.4.52 (Ubuntu) configured -- resuming normal operations"
+  },
+  "line_2": {
+    "Timestamp": "Thu Jun 08 03:04:54 ICT 2023",
+    "configure": "core",
+    "Emerge_level": "notice",
+    "Process_id": "923",
+    "Thread_id": "139828146673536",
+    "Message": "AH00094: Command line: \u0027/usr/sbin/apache2\u0027"
+  },
+  "line_3": {
+    "Timestamp": "Wed Jun 14 14:39:46 ICT 2023",
+    "configure": "mpm_event",
+    "Emerge_level": "notice",
+    "Process_id": "923",
+    "Thread_id": "139828146673536",
+    "Message": "AH00493: SIGUSR1 received.  Doing graceful restart"
+  }
+}

@@ -11,3 +11,7 @@
     -fx-background-color: #1299f6;
     -fx-text-fill: #ffffff;
 }
+
+.dashboard:hover {
+    -fx-cursor: hand;
+}

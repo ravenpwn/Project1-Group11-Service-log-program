@@ -78,7 +78,7 @@
    <left>
       <VBox maxWidth="1.7976931348623157E308" prefWidth="150.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="dashboardLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" style="-fx-background-color: #1299f6;" text="Dashboard" textFill="WHITE">
+            <Label fx:id="dashboardLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" style="-fx-background-color: #1299f6;" styleClass="dashboard" text="Dashboard" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

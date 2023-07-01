@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="apache-nginx/src"/>
+	<classpathentry kind="src" path="iptables/iptablesLog/src"/>
+	<classpathentry kind="src" path="ModSecurity/src"/>
+	<classpathentry kind="lib" path="iptables/lib/gson-2.10.1.jar"/>
+	<classpathentry kind="output" path="apache-nginx/bin"/>
+</classpath>
