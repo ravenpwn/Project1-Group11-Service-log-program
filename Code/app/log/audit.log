@@ -1,0 +1,22 @@
+{
+    "line_1": {
+        "transaction_id": "ZH9FITkL5dd7hbbtQg82hwAAAAI",
+        "local_port": 80,
+        "remote_port": 49578,
+        "local_address": "127.0.0.1",
+        "remote_address": "127.0.0.1",
+        "Timestamp": "06/Jun/2023:21:39:29 +0700",
+        "request_line": "GET /vulnerabilities/sqli/?id=%25%27+or+0%3D0+union+select+null%2C+user%28%29+%23&Submit=Submit HTTP/1.1",
+        "respond_body": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>403 Forbidden<\/title>\n<\/head><body>\n<h1>Forbidden<\/h1>\n<p>You don't have permission to access this resource.<\/p>\n<hr>\n<address>Apache/2.4.41 (Ubuntu) Server at localhost Port 80<\/address>\n<\/body><\/html>\n"
+    },
+    "line_2": {
+        "transaction_id": "ZIdmfaubTMZu7YCF5Dnw@QAAAAI",
+        "local_port": 80,
+        "remote_port": 33212,
+        "local_address": "127.0.0.1",
+        "remote_address": "127.0.0.1",
+        "Timestamp": "13/Jun/2023:01:39:57 +0700",
+        "request_line": "GET /vulnerabilities/xss_r/?name=%3Cscript%3E+alert%28%29+%3C%2Fscript%3E HTTP/1.1",
+        "respond_body": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>403 Forbidden<\/title>\n<\/head><body>\n<h1>Forbidden<\/h1>\n<p>You don't have permission to access this resource.<\/p>\n<hr>\n<address>Apache/2.4.41 (Ubuntu) Server at localhost Port 80<\/address>\n<\/body><\/html>\n"
+    }
+}

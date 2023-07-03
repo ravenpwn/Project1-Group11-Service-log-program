@@ -15,6 +15,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import log.Log;
@@ -71,11 +72,20 @@ public class AppController {
 
     @FXML
     void apacheGraphBtnPressed(ActionEvent event) {
-    	if(searchBar.isVisible()) {
-    		searchBar.setVisible(false);
-    	}
-    	displaySelectedBtn(apacheGraphBtn);
+        if (searchBar.isVisible()) {
+            searchBar.setVisible(false);
+        }
+        displaySelectedBtn(apacheGraphBtn);
+
+        // Create the charts
+        ShowLogCharts showLogCharts = new ShowLogCharts("log/access.json", "Ip_address", "Timestamp");
+        HBox hbox = showLogCharts.createCharts();
+
+        // Display the charts in the infoPane
+        infoPane.getChildren().set(0, hbox);
     }
+
+
 
     @FXML
     void apacheLabelClick(MouseEvent event) {
@@ -102,11 +112,19 @@ public class AppController {
 
     @FXML
     void iptablesGraphBtnPressed(ActionEvent event) {
-    	if(searchBar.isVisible()) {
-    		searchBar.setVisible(false);
-    	}
-    	displaySelectedBtn(iptablesGraphBtn);
+        if (searchBar.isVisible()) {
+            searchBar.setVisible(false);
+        }
+        displaySelectedBtn(iptablesGraphBtn);
+
+        // Create the charts
+        ShowLogCharts showLogCharts = new ShowLogCharts("log/log_0.json", "SRC", "date");
+        HBox hbox = showLogCharts.createCharts();
+
+        // Display the charts in the infoPane
+        infoPane.getChildren().set(0, hbox);
     }
+
 
     @FXML
     void iptablesLabelClick(MouseEvent event) {
@@ -131,13 +149,22 @@ public class AppController {
 		}
     }
 
-	@FXML
+    @FXML
     void modsecGraphBtnPressed(ActionEvent event) {
-    	if(searchBar.isVisible()) {
-    		searchBar.setVisible(false);
-    	}
-    	displaySelectedBtn(modsecGraphBtn);
+        if (searchBar.isVisible()) {
+            searchBar.setVisible(false);
+        }
+        displaySelectedBtn(modsecGraphBtn);
+
+        // Create the charts
+        ShowLogCharts showLogCharts = new ShowLogCharts("log/audit.log", "remote_address", "Timestamp");
+        HBox hbox = showLogCharts.createCharts();
+
+        // Display the charts in the infoPane
+        infoPane.getChildren().set(0, hbox);
     }
+
+
 
     @FXML
     void modsecLabelClick(MouseEvent event) {
