@@ -12,9 +12,10 @@ public class createLogEntry {
 		logObject.addProperty("configure", logEntry.getConfigure());
 		logObject.addProperty("Emerge_level", logEntry.getEmergeLevel());
 		logObject.addProperty("Process_id", logEntry.getPID());
-//		logObject.addProperty("Ip_address", logEntry.getIpAddress());
 		logObject.addProperty("Thread_id", logEntry.getTID());
+		logObject.addProperty("Client_Ip", logEntry.getIpAddress());
 		logObject.addProperty("Message", logEntry.getMessage());
+		logObject.addProperty("Referer", logEntry.getReferer());
 		
 		return logObject;
 		
@@ -28,8 +29,9 @@ public class createLogEntry {
 		String emerge_level = logParser.getEmergeLevel();
 		String pID = logParser.getPID();
 		String tID = logParser.getTID();
-//		String ip_address = logParser.getIpAddress();
+		String ip_address = logParser.getIpAddress();
 		String message = logParser.getMessage();
+		String referer = logParser.getReferer();
 		
 		SimpleDateFormat dateFormat;
         Date timestamp;
@@ -46,6 +48,6 @@ public class createLogEntry {
 			}
         }
 		
-		return new LogEntry(timestamp, configure, emerge_level, pID, tID, message);
+		return new LogEntry(timestamp, configure, emerge_level, pID, tID, ip_address ,message,referer);
 	}
 }
