@@ -68,6 +68,9 @@ public class AppController {
 
     @FXML
     private FlowPane searchBar;
+    
+    @FXML
+    private Button searchBtn;
 
     @FXML
     void apacheGraphBtnPressed(ActionEvent event) {
@@ -154,6 +157,11 @@ public class AppController {
     }
     
     @FXML
+    void searchBtnPressed() {
+    	
+    }
+    
+    @FXML
     void initialize() {
     	btns.add(apacheTableBtn);
     	btns.add(apacheGraphBtn);
@@ -163,6 +171,7 @@ public class AppController {
     	btns.add(modsecGraphBtn);
     	
     	bindVisible();
+    	searchBar.setHgap(10);
     }
     
     void bindVisible() {

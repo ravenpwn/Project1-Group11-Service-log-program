@@ -34,6 +34,9 @@ public class LogData {
 	}
 	
 	public ArrayList<Log> filterByIpAddress(String ipString, int significant) {
+//		for (Log l: data) {
+//			if(l.getField("Ip"))
+//		}
 		return null;
 		
 	}
