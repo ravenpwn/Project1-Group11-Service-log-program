@@ -12,8 +12,9 @@ public class LogParser {
 	Pattern emerge_levelPattern = Pattern.compile(StringParser.getEmergeLevel());
 	Pattern pIDPattern = Pattern.compile(StringParser.getPID());
 	Pattern tIDPattern = Pattern.compile(StringParser.getTID());
-//	Pattern ip_addressPattern = Pattern.compile(StringParser.getIpAddress());
+	Pattern ip_addressPattern = Pattern.compile(StringParser.getIpAddress());
 	Pattern messagePattern = Pattern.compile(StringParser.getMessage());
+	Pattern refererPattern = Pattern.compile(StringParser.getReferer());
 	
 	public LogParser(String line) {
 		this.line = line;
@@ -68,19 +69,28 @@ public class LogParser {
 		}
 		return "-";
 	}
-//	public String getIpAddress() {
-//		Matcher ip_addressMatcher = ip_addressPattern.matcher(line);
-//		if(ip_addressMatcher.find()) {
-//			return ip_addressMatcher.group();
-//		}
-//		return "-";
-//	}
+	public String getIpAddress() {
+		Matcher ip_addressMatcher = ip_addressPattern.matcher(line);
+		if(ip_addressMatcher.find()) {
+			return ip_addressMatcher.group().substring(1);
+		}
+		return "-";
+	}
 	
 	public String getMessage() {
 		Matcher messageMatcher = messagePattern.matcher(line);
 		if(messageMatcher.find()) {
 			String messageString = messageMatcher.group();
-			return messageString.substring(2);
+			return messageString.substring(2, messageString.length() - 1);
+		}
+		return "-";
+	}
+	
+	public String getReferer() {
+		Matcher refererMatcher = refererPattern.matcher(line);
+		if(refererMatcher.find()) {
+			String refererString = refererMatcher.group();
+			return refererString;
 		}
 		return "-";
 	}

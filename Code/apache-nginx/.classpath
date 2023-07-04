@@ -6,11 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/ADMIN/OneDrive - Hanoi University of Science and Technology/Desktop/jsoup-1.15.4.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/ADMIN/Downloads/json-simple-1.1.1.jar" sourcepath="">
 		<attributes>
 			<attribute name="module" value="true"/>

@@ -5,8 +5,9 @@ public class StringParser {
 	private static String configure_emergeString = "\\[[^\\s]+\\]";
 	private static String pIDString = "(?<=pid\\s)\\d+";
 	private static String tIDString = "(?<=tid\\s)\\d+";
-//	private static String ip_addressString;
-	private static String messageString = "\\][^\\[\\]]+$";// regex này lấy thừa ra so với yêu cầu 2 kí tự đầu tiên, đó là "] "
+	private static String ip_addressString = "\\s\\d+\\.\\d+\\.\\d+\\.\\d+\\:\\d+"; //cái này thừa kí tự space ở đầu
+	private static String messageString = "\\][^\\[\\],]+(,|$)";// regex này lấy thừa ra so với yêu cầu 2 kí tự đầu tiên và dấu phẩy ở cuối"
+	private static String refererString = "(?<=referer\\:\\s).+";
 	
 	public static String getTimestamp() {
 		return timestampString;
@@ -30,11 +31,16 @@ public class StringParser {
 		return tIDString;
 	}
 	
-//	public static String getIpAddress() {
-//		return ip_addressString;
-//	}
+	public static String getIpAddress() {
+		return ip_addressString;
+	}
 	
 	public static String getMessage() {
 		return messageString;
 	}
+	
+	public static String getReferer() {
+		return refererString;
+	}
+	
 }

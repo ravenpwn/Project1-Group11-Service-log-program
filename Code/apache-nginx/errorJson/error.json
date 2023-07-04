@@ -5,7 +5,9 @@
     "Emerge_level": "notice",
     "Process_id": "923",
     "Thread_id": "139828146673536",
-    "Message": "AH00489: Apache/2.4.52 (Ubuntu) configured -- resuming normal operations"
+    "Client_Ip": "-",
+    "Message": "AH00489: Apache/2.4.52 (Ubuntu) configured -- resuming normal operation",
+    "Referer": "-"
   },
   "line_2": {
     "Timestamp": "Thu Jun 08 03:04:54 ICT 2023",
@@ -13,7 +15,9 @@
     "Emerge_level": "notice",
     "Process_id": "923",
     "Thread_id": "139828146673536",
-    "Message": "AH00094: Command line: \u0027/usr/sbin/apache2\u0027"
+    "Client_Ip": "-",
+    "Message": "AH00094: Command line: \u0027/usr/sbin/apache2",
+    "Referer": "-"
   },
   "line_3": {
     "Timestamp": "Wed Jun 14 14:39:46 ICT 2023",
@@ -21,6 +25,168 @@
     "Emerge_level": "notice",
     "Process_id": "923",
     "Thread_id": "139828146673536",
-    "Message": "AH00493: SIGUSR1 received.  Doing graceful restart"
+    "Client_Ip": "-",
+    "Message": "AH00493: SIGUSR1 received.  Doing graceful restar",
+    "Referer": "-"
+  },
+  "line_4": {
+    "Timestamp": "Mon Jul 03 07:54:22 ICT 2023",
+    "configure": "mpm_prefork",
+    "Emerge_level": "notice",
+    "Process_id": "312",
+    "Thread_id": "-",
+    "Client_Ip": "-",
+    "Message": "AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operation",
+    "Referer": "-"
+  },
+  "line_5": {
+    "Timestamp": "Mon Jul 03 07:54:22 ICT 2023",
+    "configure": "core",
+    "Emerge_level": "notice",
+    "Process_id": "312",
+    "Thread_id": "-",
+    "Client_Ip": "-",
+    "Message": "AH00094: Command line: \u0027/usr/sbin/apache2",
+    "Referer": "-"
+  },
+  "line_6": {
+    "Timestamp": "Mon Jul 03 07:59:12 ICT 2023",
+    "configure": "",
+    "Emerge_level": "error",
+    "Process_id": "362",
+    "Thread_id": "-",
+    "Client_Ip": "192.168.20.1:58449",
+    "Message": "PHP Notice:  Constant DVWA_WEB_PAGE_TO_ROOT already defined in /var/www/html/dvwa/includes/DBMS/MySQL.php on line 9",
+    "Referer": "http://192.168.20.129:8088/setup.php"
+  },
+  "line_7": {
+    "Timestamp": "Mon Jul 03 08:08:05 ICT 2023",
+    "configure": "",
+    "Emerge_level": "error",
+    "Process_id": "365",
+    "Thread_id": "-",
+    "Client_Ip": "192.168.20.1:58909",
+    "Message": "PHP Warning:  POST Content-Length of 13416600 bytes exceeds the limit of 8388608 bytes in Unknown on line 0",
+    "Referer": "http://192.168.20.129:8088/vulnerabilities/upload/"
+  },
+  "line_8": {
+    "Timestamp": "Mon Jul 03 08:15:30 ICT 2023",
+    "configure": "",
+    "Emerge_level": "error",
+    "Process_id": "364",
+    "Thread_id": "-",
+    "Client_Ip": "192.168.20.1:58917",
+    "Message": "PHP Warning:  POST Content-Length of 13416600 bytes exceeds the limit of 8388608 bytes in Unknown on line 0",
+    "Referer": "http://192.168.20.129:8088/vulnerabilities/upload/"
+  },
+  "line_9": {
+    "Timestamp": "Mon Jul 03 10:31:28 ICT 2023",
+    "configure": "",
+    "Emerge_level": "error",
+    "Process_id": "319",
+    "Thread_id": "-",
+    "Client_Ip": "192.168.20.1:61989",
+    "Message": "PHP Notice:  Undefined index: password_new in /var/www/html/vulnerabilities/csrf/source/low.php on line ",
+    "Referer": "-"
+  },
+  "line_10": {
+    "Timestamp": "Mon Jul 03 10:31:28 ICT 2023",
+    "configure": "",
+    "Emerge_level": "error",
+    "Process_id": "319",
+    "Thread_id": "-",
+    "Client_Ip": "192.168.20.1:61989",
+    "Message": "PHP Notice:  Undefined index: password_conf in /var/www/html/vulnerabilities/csrf/source/low.php on line ",
+    "Referer": "-"
+  },
+  "line_11": {
+    "Timestamp": "Mon Jul 03 10:32:56 ICT 2023",
+    "configure": "",
+    "Emerge_level": "error",
+    "Process_id": "362",
+    "Thread_id": "-",
+    "Client_Ip": "192.168.20.1:61991",
+    "Message": "PHP Notice:  Undefined index: password_new in /var/www/html/vulnerabilities/csrf/source/low.php on line ",
+    "Referer": "-"
+  },
+  "line_12": {
+    "Timestamp": "Mon Jul 03 10:32:57 ICT 2023",
+    "configure": "",
+    "Emerge_level": "error",
+    "Process_id": "362",
+    "Thread_id": "-",
+    "Client_Ip": "192.168.20.1:61991",
+    "Message": "PHP Notice:  Undefined index: password_conf in /var/www/html/vulnerabilities/csrf/source/low.php on line ",
+    "Referer": "-"
+  },
+  "line_13": {
+    "Timestamp": "Mon Jul 03 12:12:33 ICT 2023",
+    "configure": "",
+    "Emerge_level": "error",
+    "Process_id": "372",
+    "Thread_id": "-",
+    "Client_Ip": "192.168.20.1:53653",
+    "Message": "PHP Warning:  POST Content-Length of 13416600 bytes exceeds the limit of 8388608 bytes in Unknown on line 0",
+    "Referer": "http://192.168.20.129:8088/vulnerabilities/upload/"
+  },
+  "line_14": {
+    "Timestamp": "Mon Jul 03 15:29:34 ICT 2023",
+    "configure": "core",
+    "Emerge_level": "warn",
+    "Process_id": "355",
+    "Thread_id": "-",
+    "Client_Ip": "-",
+    "Message": "AH00098: pid file /var/run/apache2/apache2.pid overwritten -- Unclean shutdown of previous Apache run",
+    "Referer": "-"
+  },
+  "line_15": {
+    "Timestamp": "Mon Jul 03 15:30:33 ICT 2023",
+    "configure": "mpm_prefork",
+    "Emerge_level": "notice",
+    "Process_id": "355",
+    "Thread_id": "-",
+    "Client_Ip": "-",
+    "Message": "AH00163: Apache/2.4.25 (Debian) configured -- resuming normal operation",
+    "Referer": "-"
+  },
+  "line_16": {
+    "Timestamp": "Mon Jul 03 15:30:33 ICT 2023",
+    "configure": "core",
+    "Emerge_level": "notice",
+    "Process_id": "355",
+    "Thread_id": "-",
+    "Client_Ip": "-",
+    "Message": "AH00094: Command line: \u0027/usr/sbin/apache2",
+    "Referer": "-"
+  },
+  "line_17": {
+    "Timestamp": "Mon Jul 03 16:35:10 ICT 2023",
+    "configure": "authz_core",
+    "Emerge_level": "error",
+    "Process_id": "497",
+    "Thread_id": "-",
+    "Client_Ip": "192.168.20.1:61968",
+    "Message": "AH01630: client denied by server configuration: /var/www/html/vulnerabilities/.hta\\",
+    "Referer": "-"
+  },
+  "line_18": {
+    "Timestamp": "Mon Jul 03 16:35:25 ICT 2023",
+    "configure": "authz_core",
+    "Emerge_level": "error",
+    "Process_id": "386",
+    "Thread_id": "-",
+    "Client_Ip": "192.168.20.1:61969",
+    "Message": "AH01630: client denied by server configuration: /var/www/html/vulnerabilities/.htaccess\\",
+    "Referer": "-"
+  },
+  "line_19": {
+    "Timestamp": "Mon Jul 03 16:35:37 ICT 2023",
+    "configure": "authz_core",
+    "Emerge_level": "error",
+    "Process_id": "363",
+    "Thread_id": "-",
+    "Client_Ip": "192.168.20.1:61970",
+    "Message": "AH01630: client denied by server configuration: /var/www/html/vulnerabilities/.htpasswd\\",
+    "Referer": "-"
   }
 }
