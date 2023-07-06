@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 public class ApacheErrorLog extends Log implements GetField {
 	public LinkedHashMap<String, String> logLine = new LinkedHashMap<>();
 	private final ArrayList<String> keys = new ArrayList<>(Arrays.asList(
-			"Timestamp", "configure", "Emerge_level", "Process_id", "Thread_id","Message"));
+			"Timestamp", "configure", "Emerge_level", "Process_id", "Thread_id","Client_Ip","Port","Message", "Referer"));
 	
 	
 	public ApacheErrorLog(LinkedHashMap<String, String> line) {

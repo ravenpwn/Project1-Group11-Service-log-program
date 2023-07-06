@@ -17,7 +17,8 @@ import com.it.loganalyze.log.LogData;
 public class CreateLog {
 	public static LogData createApacheAccessLog(String fileName) {
 		LogData logData;
-		JsonObject data = Util.readJsonFile(fileName).getAsJsonObject();
+		convertRawToJson.accessLogCode.Convert.Start(fileName);
+		JsonObject data = Util.readJsonFile("src/main/resources/com/it/loganalyze/log/access.json").getAsJsonObject();
 		ArrayList<Log> logList = new ArrayList<>();
 		// logList contains logLine in the form <key, value>
 
@@ -42,7 +43,8 @@ public class CreateLog {
 
 	public static LogData createApacheErrorLog(String fileName) {
 		LogData logData;
-		JsonObject data = Util.readJsonFile(fileName).getAsJsonObject();
+		convertRawToJson.ErrorLogCode.Convert.Start(fileName);
+		JsonObject data = Util.readJsonFile("src/main/resources/com/it/loganalyze/log/error.json").getAsJsonObject();
 		ArrayList<Log> logList = new ArrayList<>();
 		// logList contains logLine in the form <key, value>
 

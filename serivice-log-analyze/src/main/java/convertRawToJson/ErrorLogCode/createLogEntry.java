@@ -14,6 +14,7 @@ public class createLogEntry {
 		logObject.addProperty("Process_id", logEntry.getPID());
 		logObject.addProperty("Thread_id", logEntry.getTID());
 		logObject.addProperty("Client_Ip", logEntry.getIpAddress());
+		logObject.addProperty("Port", logEntry.getPort());
 		logObject.addProperty("Message", logEntry.getMessage());
 		logObject.addProperty("Referer", logEntry.getReferer());
 		
@@ -30,6 +31,7 @@ public class createLogEntry {
 		String pID = logParser.getPID();
 		String tID = logParser.getTID();
 		String ip_address = logParser.getIpAddress();
+		String port = logParser.getPort();
 		String message = logParser.getMessage();
 		String referer = logParser.getReferer();
 		
@@ -48,6 +50,6 @@ public class createLogEntry {
 			}
         }
 		
-		return new LogEntry(timestamp, configure, emerge_level, pID, tID, ip_address ,message,referer);
+		return new LogEntry(timestamp, configure, emerge_level, pID, tID, ip_address,port ,message,referer);
 	}
 }

@@ -17,8 +17,8 @@ public class App extends Application {
 	
 	
 	private static LogData iptablesLogData = CreateLog.createIptablesLog("src/main/resources/com/it/loganalyze/log/iptables.log");
-	private static LogData apacheAccess = CreateLog.createApacheAccessLog("src/main/resources/com/it/loganalyze/log/access.json");
-	private static LogData apacheError = CreateLog.createApacheAccessLog("src/main/resources/com/it/loganalyze/log/error.json");
+	private static LogData apacheAccess = CreateLog.createApacheAccessLog("access.log");
+	private static LogData apacheError = CreateLog.createApacheErrorLog("error.log");
 	public static LogData getIptablesLogData() {
 		return iptablesLogData;
 	}
@@ -35,12 +35,7 @@ public class App extends Application {
 		}
 	}
 	
-	public static void main(String[] args) {
-		convertRawToJson.ErrorLogCode.Convert errConvert = new convertRawToJson.ErrorLogCode.Convert();
-		errConvert.Start();
-		convertRawToJson.accessLogCode.Convert accConvert = new convertRawToJson.accessLogCode.Convert();
-		accConvert.Start();
-		
+	public static void main(String[] args) {	
 		launch(args);
 	}
 	public static LogData getApacheError() {

@@ -10,14 +10,16 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 public class Convert {
+	private static final String inputfile = "src/main/resources/com/it/loganalyze/log/";
 
-	public void Start() {
+	public static void Start(String filename) {
 		// TODO Auto-generated method stub
-		String inputfile = "./resources/com/it/loganalyze/log/error.log";
+		
+		String file = inputfile + filename; 
 		
 		JsonObject jsonObject = new JsonObject();
 		
-		try (BufferedReader reader = new BufferedReader(new FileReader(inputfile))){
+		try (BufferedReader reader = new BufferedReader(new FileReader(file))){
 			String line;
 			int lineNumber = 1;
 			
@@ -35,7 +37,7 @@ public class Convert {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String jsonString = gson.toJson(jsonObject);
 		
-		String outputfile = "./resources/com/it/loganalyze/log/error.json";
+		String outputfile = "src/main/resources/com/it/loganalyze/log/error.json";
 		try(FileWriter fileWriter = new FileWriter(outputfile)){
 			fileWriter.write(jsonString);
 		}catch(IOException e) {
