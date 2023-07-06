@@ -1,0 +1,238 @@
+{
+  "line_11": {
+    "Attackname": "REQUEST-949-BLOCKING-EVALUATION",
+    "Msg": "msg \"Inbound Anomaly Score Exceeded (Total Score: 5)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"anomaly-evaluation\"]",
+    "Time": "05/Jun/2023:13:34:04",
+    "id": "949110"
+  },
+  "line_33": {
+    "Attackname": "REQUEST-949-BLOCKING-EVALUATION",
+    "Msg": "msg \"Inbound Anomaly Score Exceeded (Total Score: 10)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"anomaly-evaluation\"]",
+    "Time": "22/Jun/2023:15:11:19",
+    "id": "949110"
+  },
+  "line_10": {
+    "Attackname": "REQUEST-942-APPLICATION-ATTACK-SQLI",
+    "Msg": "msg \"SQL Injection Attack Detected via libinjection\"] [data \"Matched Data: Enknk found within ARGS:id: SELECT first_name, last_name FROM users WHERE user_id = '%' or '1'='1';\"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-sqli\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/248/66\"] [tag \"PCI/6.5.2\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: Enknk found within ARGS:id: SELECT first_name, last_name FROM users WHERE user_id = '%' or '1'='1';",
+    "Time": "05/Jun/2023:13:34:04",
+    "id": "942100"
+  },
+  "line_32": {
+    "Attackname": "REQUEST-942-APPLICATION-ATTACK-SQLI",
+    "Msg": "msg \"Detects MSSQL code execution and information gathering attempts\"] [data \"Matched Data: union select found within ARGS:id: %' or 0=0 union select null, version() \"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-sqli\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/248/66\"] [tag \"PCI/6.5.2\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: union select found within ARGS:id: %' or 0=0 union select null, version() ",
+    "Time": "22/Jun/2023:15:11:19",
+    "id": "942190"
+  },
+  "line_31": {
+    "Attackname": "REQUEST-942-APPLICATION-ATTACK-SQLI",
+    "Msg": "msg \"SQL Injection Attack Detected via libinjection\"] [data \"Matched Data: s&1UE found within ARGS:id: %' or 0=0 union select null, version() #\"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-sqli\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/248/66\"] [tag \"PCI/6.5.2\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: s&1UE found within ARGS:id: %' or 0=0 union select null, version() #",
+    "Time": "22/Jun/2023:15:11:19",
+    "id": "942100"
+  },
+  "line_30": {
+    "Attackname": "RESPONSE-980-CORRELATION",
+    "Msg": "msg \"Anomaly Scores: (Inbound Scores: blocking=10, detection=10, per_pl=10-0-0-0, threshold=5) - (Outbound Scores: blocking=0, detection=0, per_pl=0-0-0-0, threshold=4) - (SQLI=10, XSS=0, RFI=0, LFI=0, RCE=0, PHPI=0, HTTP=0, SESS=0, COMBINED_SCORE=10)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"reporting\"]",
+    "Time": "22/Jun/2023:15:11:17",
+    "id": "980170"
+  },
+  "line_15": {
+    "Attackname": "REQUEST-949-BLOCKING-EVALUATION",
+    "Msg": "msg \"Inbound Anomaly Score Exceeded (Total Score: 10)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"anomaly-evaluation\"]",
+    "Time": "06/Jun/2023:21:39:29",
+    "id": "949110"
+  },
+  "line_14": {
+    "Attackname": "REQUEST-942-APPLICATION-ATTACK-SQLI",
+    "Msg": "msg \"Detects MSSQL code execution and information gathering attempts\"] [data \"Matched Data: union select found within ARGS:id: %' or 0=0 union select null, user() \"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-sqli\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/248/66\"] [tag \"PCI/6.5.2\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: union select found within ARGS:id: %' or 0=0 union select null, user() ",
+    "Time": "06/Jun/2023:21:39:29",
+    "id": "942190"
+  },
+  "line_13": {
+    "Attackname": "REQUEST-942-APPLICATION-ATTACK-SQLI",
+    "Msg": "msg \"SQL Injection Attack Detected via libinjection\"] [data \"Matched Data: s&1UE found within ARGS:id: %' or 0=0 union select null, user() #\"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-sqli\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/248/66\"] [tag \"PCI/6.5.2\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: s&1UE found within ARGS:id: %' or 0=0 union select null, user() #",
+    "Time": "06/Jun/2023:21:39:29",
+    "id": "942100"
+  },
+  "line_12": {
+    "Attackname": "RESPONSE-980-CORRELATION",
+    "Msg": "msg \"Anomaly Scores: (Inbound Scores: blocking=5, detection=5, per_pl=5-0-0-0, threshold=5) - (Outbound Scores: blocking=0, detection=0, per_pl=0-0-0-0, threshold=4) - (SQLI=5, XSS=0, RFI=0, LFI=0, RCE=0, PHPI=0, HTTP=0, SESS=0, COMBINED_SCORE=5)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"reporting\"]",
+    "Time": "05/Jun/2023:13:34:04",
+    "id": "980170"
+  },
+  "line_34": {
+    "Attackname": "RESPONSE-980-CORRELATION",
+    "Msg": "msg \"Anomaly Scores: (Inbound Scores: blocking=10, detection=10, per_pl=10-0-0-0, threshold=5) - (Outbound Scores: blocking=0, detection=0, per_pl=0-0-0-0, threshold=4) - (SQLI=10, XSS=0, RFI=0, LFI=0, RCE=0, PHPI=0, HTTP=0, SESS=0, COMBINED_SCORE=10)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"reporting\"]",
+    "Time": "22/Jun/2023:15:11:19",
+    "id": "980170"
+  },
+  "line_19": {
+    "Attackname": "REQUEST-941-APPLICATION-ATTACK-XSS",
+    "Msg": "msg \"NoScript XSS InjectionChecker: HTML Injection\"] [data \"Matched Data: <script found within ARGS:name: <script> alert() <\/script>\"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-xss\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/242\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: <script found within ARGS:name: <script> alert() <\/script>",
+    "Time": "13/Jun/2023:01:39:57",
+    "id": "941160"
+  },
+  "line_18": {
+    "Attackname": "REQUEST-941-APPLICATION-ATTACK-XSS",
+    "Msg": "msg \"XSS Filter - Category 1: Script Tag Vector\"] [data \"Matched Data: <script> found within ARGS:name: <script> alert() <\/script>\"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-xss\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/242\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: <script> found within ARGS:name: <script> alert() <\/script>",
+    "Time": "13/Jun/2023:01:39:57",
+    "id": "941110"
+  },
+  "line_17": {
+    "Attackname": "REQUEST-941-APPLICATION-ATTACK-XSS",
+    "Msg": "msg \"XSS Attack Detected via libinjection\"] [data \"Matched Data: XSS data found within ARGS:name: <script> alert() <\/script>\"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-xss\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/242\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: XSS data found within ARGS:name: <script> alert() <\/script>",
+    "Time": "13/Jun/2023:01:39:57",
+    "id": "941100"
+  },
+  "line_16": {
+    "Attackname": "RESPONSE-980-CORRELATION",
+    "Msg": "msg \"Anomaly Scores: (Inbound Scores: blocking=10, detection=10, per_pl=10-0-0-0, threshold=5) - (Outbound Scores: blocking=0, detection=0, per_pl=0-0-0-0, threshold=4) - (SQLI=10, XSS=0, RFI=0, LFI=0, RCE=0, PHPI=0, HTTP=0, SESS=0, COMBINED_SCORE=10)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"reporting\"]",
+    "Time": "06/Jun/2023:21:39:29",
+    "id": "980170"
+  },
+  "line_1": {
+    "Attackname": "REQUEST-942-APPLICATION-ATTACK-SQLI",
+    "Msg": "msg \"Detects MSSQL code execution and information gathering attempts\"] [data \"Matched Data: \\x22SELECT f found within ARGS:id: $getid = \\x22SELECT first_name, last_name FROM users WHERE user_id = '$id'\\x22;\"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-sqli\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/248/66\"] [tag \"PCI/6.5.2\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: \\x22SELECT f found within ARGS:id: $getid = \\x22SELECT first_name, last_name FROM users WHERE user_id = '$id'\\x22;",
+    "Time": "05/Jun/2023:13:32:07",
+    "id": "942190"
+  },
+  "line_22": {
+    "Attackname": "RESPONSE-980-CORRELATION",
+    "Msg": "msg \"Anomaly Scores: (Inbound Scores: blocking=20, detection=20, per_pl=20-0-0-0, threshold=5) - (Outbound Scores: blocking=0, detection=0, per_pl=0-0-0-0, threshold=4) - (SQLI=0, XSS=20, RFI=0, LFI=0, RCE=0, PHPI=0, HTTP=0, SESS=0, COMBINED_SCORE=20)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"reporting\"]",
+    "Time": "13/Jun/2023:01:39:57",
+    "id": "980170"
+  },
+  "line_2": {
+    "Attackname": "REQUEST-949-BLOCKING-EVALUATION",
+    "Msg": "msg \"Inbound Anomaly Score Exceeded (Total Score: 5)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"anomaly-evaluation\"]",
+    "Time": "05/Jun/2023:13:32:07",
+    "id": "949110"
+  },
+  "line_21": {
+    "Attackname": "REQUEST-949-BLOCKING-EVALUATION",
+    "Msg": "msg \"Inbound Anomaly Score Exceeded (Total Score: 20)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"anomaly-evaluation\"]",
+    "Time": "13/Jun/2023:01:39:57",
+    "id": "949110"
+  },
+  "line_20": {
+    "Attackname": "REQUEST-941-APPLICATION-ATTACK-XSS",
+    "Msg": "msg \"Javascript method detected\"] [data \"Matched Data: alert( found within ARGS:name: <script> alert() <\/script>\"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"attack-xss\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/242\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: alert( found within ARGS:name: <script> alert() <\/script>",
+    "Time": "13/Jun/2023:01:39:57",
+    "id": "941390"
+  },
+  "line_26": {
+    "Attackname": "RESPONSE-980-CORRELATION",
+    "Msg": "msg \"Anomaly Scores: (Inbound Scores: blocking=10, detection=10, per_pl=10-0-0-0, threshold=5) - (Outbound Scores: blocking=0, detection=0, per_pl=0-0-0-0, threshold=4) - (SQLI=10, XSS=0, RFI=0, LFI=0, RCE=0, PHPI=0, HTTP=0, SESS=0, COMBINED_SCORE=10)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"reporting\"]",
+    "Time": "22/Jun/2023:15:11:13",
+    "id": "980170"
+  },
+  "line_25": {
+    "Attackname": "REQUEST-949-BLOCKING-EVALUATION",
+    "Msg": "msg \"Inbound Anomaly Score Exceeded (Total Score: 10)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"anomaly-evaluation\"]",
+    "Time": "22/Jun/2023:15:11:13",
+    "id": "949110"
+  },
+  "line_24": {
+    "Attackname": "REQUEST-942-APPLICATION-ATTACK-SQLI",
+    "Msg": "msg \"Detects MSSQL code execution and information gathering attempts\"] [data \"Matched Data: union select found within ARGS:id: %' or 0=0 union select null, version() \"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-sqli\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/248/66\"] [tag \"PCI/6.5.2\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: union select found within ARGS:id: %' or 0=0 union select null, version() ",
+    "Time": "22/Jun/2023:15:11:13",
+    "id": "942190"
+  },
+  "line_23": {
+    "Attackname": "REQUEST-942-APPLICATION-ATTACK-SQLI",
+    "Msg": "msg \"SQL Injection Attack Detected via libinjection\"] [data \"Matched Data: s&1UE found within ARGS:id: %' or 0=0 union select null, version() #\"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-sqli\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/248/66\"] [tag \"PCI/6.5.2\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: s&1UE found within ARGS:id: %' or 0=0 union select null, version() #",
+    "Time": "22/Jun/2023:15:11:13",
+    "id": "942100"
+  },
+  "line_9": {
+    "Attackname": "RESPONSE-980-CORRELATION",
+    "Msg": "msg \"Anomaly Scores: (Inbound Scores: blocking=5, detection=5, per_pl=5-0-0-0, threshold=5) - (Outbound Scores: blocking=0, detection=0, per_pl=0-0-0-0, threshold=4) - (SQLI=5, XSS=0, RFI=0, LFI=0, RCE=0, PHPI=0, HTTP=0, SESS=0, COMBINED_SCORE=5)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"reporting\"]",
+    "Time": "05/Jun/2023:13:33:46",
+    "id": "980170"
+  },
+  "line_7": {
+    "Attackname": "REQUEST-942-APPLICATION-ATTACK-SQLI",
+    "Msg": "msg \"SQL Injection Attack Detected via libinjection\"] [data \"Matched Data: Enknk found within ARGS:id: SELECT first_name, last_name FROM users WHERE user_id = '%' or '1'='1';\"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-sqli\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/248/66\"] [tag \"PCI/6.5.2\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: Enknk found within ARGS:id: SELECT first_name, last_name FROM users WHERE user_id = '%' or '1'='1';",
+    "Time": "05/Jun/2023:13:33:46",
+    "id": "942100"
+  },
+  "line_8": {
+    "Attackname": "REQUEST-949-BLOCKING-EVALUATION",
+    "Msg": "msg \"Inbound Anomaly Score Exceeded (Total Score: 5)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"anomaly-evaluation\"]",
+    "Time": "05/Jun/2023:13:33:46",
+    "id": "949110"
+  },
+  "line_5": {
+    "Attackname": "REQUEST-949-BLOCKING-EVALUATION",
+    "Msg": "msg \"Inbound Anomaly Score Exceeded (Total Score: 5)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"anomaly-evaluation\"]",
+    "Time": "05/Jun/2023:13:32:20",
+    "id": "949110"
+  },
+  "line_6": {
+    "Attackname": "RESPONSE-980-CORRELATION",
+    "Msg": "msg \"Anomaly Scores: (Inbound Scores: blocking=5, detection=5, per_pl=5-0-0-0, threshold=5) - (Outbound Scores: blocking=0, detection=0, per_pl=0-0-0-0, threshold=4) - (SQLI=5, XSS=0, RFI=0, LFI=0, RCE=0, PHPI=0, HTTP=0, SESS=0, COMBINED_SCORE=5)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"reporting\"]",
+    "Time": "05/Jun/2023:13:32:20",
+    "id": "980170"
+  },
+  "line_3": {
+    "Attackname": "RESPONSE-980-CORRELATION",
+    "Msg": "msg \"Anomaly Scores: (Inbound Scores: blocking=5, detection=5, per_pl=5-0-0-0, threshold=5) - (Outbound Scores: blocking=0, detection=0, per_pl=0-0-0-0, threshold=4) - (SQLI=5, XSS=0, RFI=0, LFI=0, RCE=0, PHPI=0, HTTP=0, SESS=0, COMBINED_SCORE=5)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"reporting\"]",
+    "Time": "05/Jun/2023:13:32:07",
+    "id": "980170"
+  },
+  "line_4": {
+    "Attackname": "REQUEST-942-APPLICATION-ATTACK-SQLI",
+    "Msg": "msg \"SQL Injection Attack Detected via libinjection\"] [data \"Matched Data: Enknk found within ARGS:id: SELECT first_name, last_name FROM users WHERE user_id = '%' or '1'='1';\"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-sqli\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/248/66\"] [tag \"PCI/6.5.2\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: Enknk found within ARGS:id: SELECT first_name, last_name FROM users WHERE user_id = '%' or '1'='1';",
+    "Time": "05/Jun/2023:13:32:20",
+    "id": "942100"
+  },
+  "line_29": {
+    "Attackname": "REQUEST-949-BLOCKING-EVALUATION",
+    "Msg": "msg \"Inbound Anomaly Score Exceeded (Total Score: 10)\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"anomaly-evaluation\"]",
+    "Time": "22/Jun/2023:15:11:17",
+    "id": "949110"
+  },
+  "line_28": {
+    "Attackname": "REQUEST-942-APPLICATION-ATTACK-SQLI",
+    "Msg": "msg \"Detects MSSQL code execution and information gathering attempts\"] [data \"Matched Data: union select found within ARGS:id: %' or 0=0 union select null, version() \"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-sqli\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/248/66\"] [tag \"PCI/6.5.2\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: union select found within ARGS:id: %' or 0=0 union select null, version() ",
+    "Time": "22/Jun/2023:15:11:17",
+    "id": "942190"
+  },
+  "line_27": {
+    "Attackname": "REQUEST-942-APPLICATION-ATTACK-SQLI",
+    "Msg": "msg \"SQL Injection Attack Detected via libinjection\"] [data \"Matched Data: s&1UE found within ARGS:id: %' or 0=0 union select null, version() #\"] [severity \"CRITICAL\"] [ver \"OWASP_CRS/4.0.0-rc1\"] [tag \"application-multi\"] [tag \"language-multi\"] [tag \"platform-multi\"] [tag \"attack-sqli\"] [tag \"paranoia-level/1\"] [tag \"OWASP_CRS\"] [tag \"capec/1000/152/248/66\"] [tag \"PCI/6.5.2\"]",
+    "severity": "CRITICAL",
+    "data": "Matched Data: s&1UE found within ARGS:id: %' or 0=0 union select null, version() #",
+    "Time": "22/Jun/2023:15:11:17",
+    "id": "942100"
+  }
+}
