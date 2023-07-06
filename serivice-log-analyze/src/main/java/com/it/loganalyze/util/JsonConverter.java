@@ -45,8 +45,7 @@ public class JsonConverter {
                 }
 
                 result.put(key, value);
-            } catch (JSONException e) {
-                System.err.println("Skipping invalid JSON object on line " + (i + 1));
+            } catch (JSONException e) {              
             }
         }
 

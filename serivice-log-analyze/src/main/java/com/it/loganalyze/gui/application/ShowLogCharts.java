@@ -16,6 +16,9 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
 import org.json.JSONObject;
 
+import com.it.loganalyze.log.Log;
+import com.it.loganalyze.log.LogData;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,28 +29,25 @@ import java.util.function.Consumer;
 import javafx.scene.control.Tooltip;
 
 public class ShowLogCharts {
-    private String jsonString;
+    private LogData logData;
     private String pieChartField;
     private String timeSeriesChartField;
     private PieChartFX pieChartFX;
     private TimeSeriesChartFX timeSeriesChartFX;
 
-    public ShowLogCharts(String jsonFilePath, String pieChartField, String timeSeriesChartField) {
-        try {
-            this.jsonString = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
-            this.pieChartField = pieChartField;
-            this.timeSeriesChartField = timeSeriesChartField;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public ShowLogCharts(LogData logData, String pieChartField, String timeSeriesChartField) {
+        this.logData = logData;
+        this.pieChartField = pieChartField;
+        this.timeSeriesChartField = timeSeriesChartField;
     }
+    
 
     public HBox createCharts() {
         try {
             // Create the pie chart and time series chart
-            pieChartFX = new PieChartFX(jsonString, pieChartField);
+            pieChartFX = new PieChartFX(logData, pieChartField);
             PieChart pieChart = pieChartFX.createChart();
-            timeSeriesChartFX = new TimeSeriesChartFX(jsonString, timeSeriesChartField);
+            timeSeriesChartFX = new TimeSeriesChartFX(logData, timeSeriesChartField);
             LineChart<String, Number> timeSeriesChart = timeSeriesChartFX.createChart();
 
             // Add an event handler to update the charts when a day is clicked in the time series chart
@@ -69,297 +69,290 @@ public class ShowLogCharts {
         return null;
     }
 
-    // Include the PieChartFX and TimeSeriesChartFX classes here
-    public class PieChartFX {
-        private String jsonString;
-        private String field;
-        private PieChart chart;
+    // Include the updated PieChartFX and TimeSeriesChartFX classes here
 
-        public PieChartFX(String jsonString, String field) {
-            this.jsonString = jsonString;
-            this.field = field;
-        }
 
-        public PieChart createChart() {
-            JSONObject obj = new JSONObject(jsonString);
 
-            // Create a dataset for the pie chart
-            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        public class PieChartFX {
+            private LogData logData;
+            private String field;
+            private PieChart chart;
 
-            // Create a map to keep track of the counts of each unique value of the given field
-            Map<String, Integer> map = new HashMap<>();
-
-            // Loop through all the keys in the JSON object
-            for (Object key : obj.keySet()) {
-                JSONObject data = obj.getJSONObject((String) key);
-
-                // Get the value of the given field
-                String value = data.optString(field);
-
-                // Update the counts in the map
-                if (map.containsKey(value)) {
-                    map.put(value, map.get(value) + 1);
-                } else {
-                    map.put(value, 1);
-                }
+            public PieChartFX(LogData logData, String field) {
+                this.logData = logData;
+                this.field = field;
             }
 
-            // Add the data from the map to the dataset
-            for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
-            }
+            public PieChart createChart() {
+                // Create a dataset for the pie chart
+                ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 
-            // Create the pie chart
-            chart = new PieChart(pieChartData);
-            chart.setTitle("Pie Chart Example");
+                // Create a map to keep track of the counts of each unique value of the given field
+                Map<String, Integer> map = new HashMap<>();
 
-            // Add an event handler to display a tooltip when a pie slice is pointed at
-            for (PieChart.Data data : pieChartData) {
-                Tooltip tooltip = new Tooltip(data.getName() + ": " + data.getPieValue());
-                Tooltip.install(data.getNode(), tooltip);
-            }
-
-            return chart;
-        }
-
-        public void updateChart(String day) throws Exception {
-            JSONObject obj = new JSONObject(jsonString);
-
-            // Clear the existing data from the chart
-            chart.getData().clear();
-
-            // Create a dataset for the pie chart
-            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-
-            // Create a map to keep track of the counts of each unique value of the given field for the given day
-            Map<String, Integer> map = new HashMap<>();
-
-            // Loop through all the keys in the JSON object
-            for (Object key : obj.keySet()) {
-                JSONObject data = obj.getJSONObject((String) key);
-
-                // Get the value of the timestamp field
-                String value = data.optString("Timestamp");
-                if (value.isEmpty()) {
-                    value = data.optString("date");
-                }
-                if (value.isEmpty()) {
-                    value = data.optString("Time");
-                }
-
-                // Parse the value as a date
-                Date date = null;
-                if (value.contains("/")) {
-                    SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
-                    date = dateFormat1.parse(value);
-                } else if (value.contains("ICT")) {
-                    SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-                    dateFormat2.setTimeZone(TimeZone.getTimeZone("Asia/Bangkok"));
-                    date = dateFormat2.parse(value);
-                } else if (value.contains(":")) {
-                    SimpleDateFormat dateFormat3 = new SimpleDateFormat("MMM d HH:mm:ss");
-                    date = dateFormat3.parse(value);
-                } else {
-                    SimpleDateFormat dateFormat4 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss");
-                    date = dateFormat4.parse(value);
-                }
-                SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
-                String currentDay = dayFormat.format(date);
-
-                // Check if the date is within the given day
-                if (currentDay.equals(day)) {
+                // Loop through all the logs in the LogData object
+                for (Log log : logData.getData()) {
                     // Get the value of the given field
-                    String fieldValue = data.optString(field);
+                    String value = log.getField(field);
 
                     // Update the counts in the map
-                    if (map.containsKey(fieldValue)) {
-                        map.put(fieldValue, map.get(fieldValue) + 1);
+                    if (map.containsKey(value)) {
+                        map.put(value, map.get(value) + 1);
                     } else {
-                        map.put(fieldValue, 1);
+                        map.put(value, 1);
                     }
                 }
-            }
 
-            // Add the data from the map to the dataset
-            for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
-            }
-
-            // Update the pie chart data
-            chart.setData(pieChartData);
-
-            // Update the tooltips
-            for (PieChart.Data data : pieChartData) {
-                Tooltip tooltip = new Tooltip(data.getName() + ": " + data.getPieValue());
-                Tooltip.install(data.getNode(), tooltip);
-            }
-        }
-    }
-
-
-
-    public class TimeSeriesChartFX {
-        private String jsonString;
-        private String field;
-        private LineChart<String, Number> chart;
-        private Consumer<String> dayClickedHandler;
-
-        public TimeSeriesChartFX(String jsonString, String field) {
-            this.jsonString = jsonString;
-            this.field = field;
-        }
-
-        public LineChart<String, Number> createChart() throws Exception {
-            JSONObject obj = new JSONObject(jsonString);
-
-            // Create the axes for the chart
-            CategoryAxis xAxis = new CategoryAxis();
-            xAxis.setLabel("Time");
-            NumberAxis yAxis = new NumberAxis();
-            yAxis.setLabel("Value");
-
-            // Create a line chart
-            chart = new LineChart<>(xAxis, yAxis);
-            chart.setTitle("Time Series Chart Example");
-
-            // Create a series for the chart
-            XYChart.Series<String, Number> series = new XYChart.Series<>();
-            series.setName("Time Series Example");
-
-            // Create a map to keep track of the counts of logs for each day
-            Map<String, Integer> map = new HashMap<>();
-
-            // Loop through all the keys in the JSON object
-            for (Object key : obj.keySet()) {
-                JSONObject data = obj.getJSONObject((String) key);
-
-                // Get the value of the given field
-                String value = data.optString(field);
-
-                // Parse the value as a date
-                Date date = null;
-                if (value.contains("/")) {
-                    SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
-                    date = dateFormat1.parse(value);
-                } else if (value.contains("ICT")) {
-                    SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-                    dateFormat2.setTimeZone(TimeZone.getTimeZone("Asia/Bangkok"));
-                    date = dateFormat2.parse(value);
-                } else if (value.contains(":")) {
-                    SimpleDateFormat dateFormat3 = new SimpleDateFormat("MMM d HH:mm:ss");
-                    date = dateFormat3.parse(value);
-                } else {
-                    SimpleDateFormat dateFormat4 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss");
-                    date = dateFormat4.parse(value);
+                // Add the data from the map to the dataset
+                for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                    pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
                 }
-                SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
-                String day = dayFormat.format(date);
 
-                // Update the counts in the map
-                if (map.containsKey(day)) {
-                    map.put(day, map.get(day) + 1);
-                } else {
-                    map.put(day, 1);
+                // Create the pie chart
+                chart = new PieChart(pieChartData);
+                chart.setTitle("Pie Chart Example");
+
+                // Add an event handler to display a tooltip when a pie slice is pointed at
+                for (PieChart.Data data : pieChartData) {
+                    Tooltip tooltip = new Tooltip(data.getName() + ": " + data.getPieValue());
+                    Tooltip.install(data.getNode(), tooltip);
                 }
+
+                return chart;
             }
 
-            // Add the data from the map to the series
-            for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
-            }
+            public void updateChart(String day) throws Exception {
+                // Clear the existing data from the chart
+                chart.getData().clear();
 
-            // Add an event handler to update the chart when a data point is clicked
-            Platform.runLater(() -> {
-                for (XYChart.Data<String, Number> data : series.getData()) {
-                    data.getNode().setOnMouseClicked(event -> {
-                        if (dayClickedHandler != null) {
-                            dayClickedHandler.accept(data.getXValue());
+                // Create a dataset for the pie chart
+                ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+                // Create a map to keep track of the counts of each unique value of the given field for the given day
+                Map<String, Integer> map = new HashMap<>();
+
+                // Loop through all the logs in the LogData object
+                for (Log log : logData.getData()) {
+                    // Get the value of the timestamp field
+                    String value = log.getField("Timestamp");
+                    if (value == null ) {
+                        value = log.getField("Date");
+                    }
+                    if (value == null ) {
+                        value = log.getField("Time");
+                    }
+
+
+                    // Parse the value as a date
+                    Date date = null;
+                    if (value.contains("/")) {
+                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
+                        date = dateFormat1.parse(value);
+                    } else if (value.contains("ICT")) {
+                        SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+                        dateFormat2.setTimeZone(TimeZone.getTimeZone("Asia/Bangkok"));
+                        date = dateFormat2.parse(value);
+                    } else if (value.contains(":")) {
+                        SimpleDateFormat dateFormat3 = new SimpleDateFormat("MMM d HH:mm:ss");
+                        date = dateFormat3.parse(value);
+                    } else {
+                        SimpleDateFormat dateFormat4 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss");
+                        date = dateFormat4.parse(value);
+                    }
+                    SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String currentDay = dayFormat.format(date);
+
+                    // Check if the date is within the given day
+                    if (currentDay.equals(day)) {
+                        // Get the value of the given field
+                        String fieldValue = log.getField(field);
+
+                        // Update the counts in the map
+                        if (map.containsKey(fieldValue)) {
+                            map.put(fieldValue, map.get(fieldValue) + 1);
+                        } else {
+                            map.put(fieldValue, 1);
                         }
-                    });
+                    }
                 }
-            });
 
-            // Add the series to the chart
-            chart.getData().add(series);
-            return chart;
+                // Add the data from the map to the dataset
+                for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                    pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
+                }
+
+                // Update the pie chart data
+                chart.setData(pieChartData);
+
+                // Update the tooltips
+                for (PieChart.Data data : pieChartData) {
+                    Tooltip tooltip = new Tooltip(data.getName() + ": " + data.getPieValue());
+                    Tooltip.install(data.getNode(), tooltip);
+                }
+            }
+
         }
 
-        public void updateChart(String day, boolean showHourlyData) throws Exception {
-            JSONObject obj = new JSONObject(jsonString);
 
-            // Clear the existing data from the chart
-            chart.getData().clear();
 
-            // Create a series for the chart
-            XYChart.Series<String, Number> series = new XYChart.Series<>();
-            series.setName("Time Series Example");
 
-            // Create a map to keep track of the counts of logs for each hour or day
-            Map<String, Integer> map = new HashMap<>();
+        public class TimeSeriesChartFX {
+            private LogData logData;
+            private String field;
+            private LineChart<String, Number> chart;
+            private Consumer<String> dayClickedHandler;
 
-            // Loop through all the keys in the JSON object
-            for (Object key : obj.keySet()) {
-                JSONObject data = obj.getJSONObject((String) key);
+            public TimeSeriesChartFX(LogData logData, String field) {
+                this.logData = logData;
+                this.field = field;
+            }
 
-                // Get the value of the timestamp field
-                String value = data.optString("Timestamp");
-                if (value.isEmpty()) {
-                    value = data.optString("date");
-                }
-                if (value.isEmpty()) {
-                    value = data.optString("Time");
-                }
+            public LineChart<String, Number> createChart() throws Exception {
+                // Create the axes for the chart
+                CategoryAxis xAxis = new CategoryAxis();
+                xAxis.setLabel("Time");
+                NumberAxis yAxis = new NumberAxis();
+                yAxis.setLabel("Value");
 
-                // Parse the value as a date
-                Date date = null;
-                if (value.contains("/")) {
-                    SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
-                    date = dateFormat1.parse(value);
-                } else if (value.contains("ICT")) {
-                    SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-                    dateFormat2.setTimeZone(TimeZone.getTimeZone("Asia/Bangkok"));
-                    date = dateFormat2.parse(value);
-                } else if (value.contains(":")) {
-                    SimpleDateFormat dateFormat3 = new SimpleDateFormat("MMM d HH:mm:ss");
-                    date = dateFormat3.parse(value);
-                } else {
-                    SimpleDateFormat dateFormat4 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss");
-                    date = dateFormat4.parse(value);
-                }
-                SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
-                String currentDay = dayFormat.format(date);
+                // Create a line chart
+                chart = new LineChart<>(xAxis, yAxis);
+                chart.setTitle("Time Series Chart Example");
 
-                // Check if the date is within the given day
-                if (currentDay.equals(day)) {
-                    if (showHourlyData) {
-                        // Group by hour
-                        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
-                        key = hourFormat.format(date);
+                // Create a series for the chart
+                XYChart.Series<String, Number> series = new XYChart.Series<>();
+                series.setName("Time Series Example");
+
+                // Create a map to keep track of the counts of logs for each day
+                Map<String, Integer> map = new HashMap<>();
+
+                // Loop through all the logs in the LogData object
+                for (Log log : logData.getData()) {
+                    // Get the value of the given field
+                    String value = log.getField(field);
+
+                    // Parse the value as a date
+                    Date date = null;
+                    if (value.contains("/")) {    
+                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
+                        date = dateFormat1.parse(value);
+                    } else if (value.contains("ICT")) {
+                        SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+                        dateFormat2.setTimeZone(TimeZone.getTimeZone("Asia/Bangkok"));
+                        date = dateFormat2.parse(value);
+                    } else if (value.contains(":")) {
+                        SimpleDateFormat dateFormat3 = new SimpleDateFormat("MMM d HH:mm:ss");
+                        date = dateFormat3.parse(value);
                     } else {
-                        // Group by day
-                        key = currentDay;
+                        SimpleDateFormat dateFormat4 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss");
+                        date = dateFormat4.parse(value);
                     }
+                    SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String day = dayFormat.format(date);
 
                     // Update the counts in the map
-                    if (map.containsKey(key)) {
-                        map.put((String) key, map.get(key) + 1);
+                    if (map.containsKey(day)) {
+                        map.put(day, map.get(day) + 1);
                     } else {
-                        map.put((String) key, 1);
+                        map.put(day, 1);
                     }
                 }
+
+                // Add the data from the map to the series
+                for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                    series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+                }
+
+                // Add an event handler to update the chart when a data point is clicked
+                Platform.runLater(() -> {
+                    for (XYChart.Data<String, Number> data : series.getData()) {
+                        data.getNode().setOnMouseClicked(event -> {
+                            if (dayClickedHandler != null) {
+                                dayClickedHandler.accept(data.getXValue());
+                            }
+                        });
+                    }
+                });
+
+                // Add the series to the chart
+                chart.getData().add(series);
+                return chart;
             }
 
-            // Add the data from the map to the series
-            for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+
+            public void updateChart(String day, boolean showHourlyData) throws Exception {
+                // Clear the existing data from the chart
+                chart.getData().clear();
+
+                // Create a series for the chart
+                XYChart.Series<String, Number> series = new XYChart.Series<>();
+                series.setName("Time Series Example");
+
+                // Create a map to keep track of the counts of logs for each hour or day
+                Map<String, Integer> map = new HashMap<>();
+
+                // Loop through all the logs in the LogData object
+                for (Log log : logData.getData()) {
+                    // Get the value of the timestamp field
+                    String value = log.getField("Timestamp");
+                    if (value == null ) {
+                        value = log.getField("Date");
+                    }
+                    if (value == null) {
+                        value = log.getField("Time");
+                    }
+
+                    // Parse the value as a date
+                    Date date = null;
+                    if (value.contains("/")) {
+                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
+                        date = dateFormat1.parse(value);
+                    } else if (value.contains("ICT")) {
+                        SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+                        dateFormat2.setTimeZone(TimeZone.getTimeZone("Asia/Bangkok"));
+                        date = dateFormat2.parse(value);
+                    } else if (value.contains(":")) {
+                        SimpleDateFormat dateFormat3 = new SimpleDateFormat("MMM d HH:mm:ss");
+                        date = dateFormat3.parse(value);
+                    } else {
+                        SimpleDateFormat dateFormat4 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss");
+                        date = dateFormat4.parse(value);
+                    }
+                    SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String currentDay = dayFormat.format(date);
+
+                    // Check if the date is within the given day
+                    if (currentDay.equals(day)) {
+                        Object key;
+                        if (showHourlyData) {
+                            // Group by hour
+                            SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
+                            key = hourFormat.format(date);
+                        } else {
+                            // Group by day
+                            key = currentDay;
+                        }
+
+                        // Update the counts in the map
+                        if (map.containsKey(key)) {
+                            map.put((String) key, map.get(key) + 1);
+                        } else {
+                            map.put((String) key, 1);
+                        }
+                    }
+                }
+
+                // Add the data from the map to the series
+                for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                    series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+                }
+
+                // Add the series to the chart
+                chart.getData().add(series);
             }
 
-            // Update the chart data
-            chart.getData().add(series);
+            public void setDayClickedHandler(Consumer<String> handler) {
+                this.dayClickedHandler = handler;
+            }
         }
 
-        public void setDayClickedHandler(Consumer<String> dayClickedHandler) {
-            this.dayClickedHandler = dayClickedHandler;
-        }
-    }
 }

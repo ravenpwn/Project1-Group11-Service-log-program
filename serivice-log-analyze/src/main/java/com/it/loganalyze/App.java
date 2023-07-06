@@ -19,6 +19,8 @@ public class App extends Application {
 	private static LogData iptablesLogData = CreateLog.createIptablesLog("src/main/resources/com/it/loganalyze/log/iptables.log");
 	private static LogData apacheAccess = CreateLog.createApacheAccessLog("access.log");
 	private static LogData apacheError = CreateLog.createApacheErrorLog("error.log");
+	private static LogData modAudit = CreateLog.createAudit("src/main/resources/com/it/loganalyze/log/audit.log");
+	private static LogData modDebug = CreateLog.createDebug("src/main/resources/com/it/loganalyze/log/debug.log");
 	public static LogData getIptablesLogData() {
 		return iptablesLogData;
 	}
@@ -37,6 +39,7 @@ public class App extends Application {
 	
 	public static void main(String[] args) {	
 		launch(args);
+		
 	}
 	public static LogData getApacheError() {
 		return apacheError;
@@ -44,4 +47,11 @@ public class App extends Application {
 	public static LogData getApacheAccess() {
 		return apacheAccess;
 	}
+	public static LogData getModSecurityAuditLog() {
+		return modAudit;
+	}
+	public static LogData getModSecurityDebugLog() {
+		return modDebug;
+	}
+	
 }
