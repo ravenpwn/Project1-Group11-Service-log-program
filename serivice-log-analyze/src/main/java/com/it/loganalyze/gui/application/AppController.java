@@ -3,6 +3,7 @@ package com.it.loganalyze.gui.application;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.it.loganalyze.App;
 import com.it.loganalyze.log.Log;
@@ -35,6 +36,8 @@ public class AppController {
 	private TabPane tabPane = new TabPane();
 	private Tab accessTab = new Tab("access.log");
 	private Tab errorTab =  new Tab("error.log");
+	private LogData iptablesLogData = App.getIptablesLogData();
+	private ShowLogTable iptablesLogTable = new ShowLogTable(iptablesLogData, iptablesLogData.getMainKeys());
 	
 	@FXML
 	private StackPane infoPane;
@@ -126,8 +129,8 @@ public class AppController {
     	ShowLogTable show = new ShowLogTable(apacheAccess);
     	ShowLogTable show2 = new ShowLogTable(apacheError);
     	try {
-			accessTab.setContent(show.createTableView());
-			errorTab.setContent(show2.createTableView());
+			accessTab.setContent(show.geTableView());
+			errorTab.setContent(show2.geTableView());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -174,10 +177,10 @@ public class AppController {
     	}
     	displaySelectedBtn(iptablesTableBtn);
     	LogData iptablesLogData = App.getIptablesLogData();
-    	ShowLogTable show = new ShowLogTable(iptablesLogData, iptablesLogData.getMainKeys());
+    	
     	
     	try {
-			showTable(show.createTableView());
+			showTable(iptablesLogTable.geTableView());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -225,12 +228,18 @@ public class AppController {
 			e.printStackTrace();
     		date = null;
 		}
-    	
-    	if(date!=null) {    		
+    	System.out.println(date);
+    	System.out.println(ipString);
+    	if(date == null) {    		
+    		search(ipString);
+    	} else if (ipString == null){
     		search(date);
     	} else {
-    		search(ipString);
-    	}
+    		HashMap<String, Object> searchMap =  new HashMap<>();
+    		searchMap.put("Date", date);
+    		searchMap.put("Src IP address", ipString);
+			search(searchMap);
+		}
     }
    
 	@FXML
@@ -303,8 +312,8 @@ public class AppController {
 			ShowLogTable show = new ShowLogTable(apacheAccess);
 	    	ShowLogTable show2 = new ShowLogTable(apacheError);
 	    	try {
-				accessTab.setContent(show.createTableView());
-				errorTab.setContent(show2.createTableView());
+				accessTab.setContent(show.geTableView());
+				errorTab.setContent(show2.geTableView());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -316,7 +325,7 @@ public class AppController {
 	    	ShowLogTable show3 = new ShowLogTable(iptablesLogData, iptablesLogData.getMainKeys());
 	    	
 	    	try {
-				showTable(show3.createTableView());
+				showTable(show3.geTableView());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -338,8 +347,8 @@ public class AppController {
 			ShowLogTable show = new ShowLogTable(apacheAccess);
 	    	ShowLogTable show2 = new ShowLogTable(apacheError);
 	    	try {
-				accessTab.setContent(show.createTableView());
-				errorTab.setContent(show2.createTableView());
+				accessTab.setContent(show.geTableView());
+				errorTab.setContent(show2.geTableView());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -350,7 +359,7 @@ public class AppController {
 	    	ShowLogTable show3 = new ShowLogTable(iptablesLogData, iptablesLogData.getMainKeys());
 	    	
 	    	try {
-				showTable(show3.createTableView());
+				showTable(show3.geTableView());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -358,6 +367,11 @@ public class AppController {
 			break;
 		default:
 			break;
+		}
+	}
+	public void search(HashMap<String, Object> searchMap) {
+		if(whatLog.equals("iptables")) {
+			iptablesLogTable.filterByFields(searchMap);
 		}
 	}
 }

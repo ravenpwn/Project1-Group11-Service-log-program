@@ -1,4 +1,4 @@
-package com.it.loganalyze.test;
+package test;
 
 import java.time.LocalDate;
 

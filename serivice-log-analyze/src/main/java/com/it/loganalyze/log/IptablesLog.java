@@ -58,8 +58,11 @@ public class IptablesLog extends Log implements GetField{
 
 	@Override
 	public String getSrcIp() {
-		
-		return logLine.get("Source ip address (SRC)");
+		String res = logLine.get("Source ip address (SRC)");
+		if(res == null) {			
+			return "";
+		}
+		return res;
 	}
 
 	@Override

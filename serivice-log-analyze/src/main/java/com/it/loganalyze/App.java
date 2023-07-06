@@ -22,11 +22,19 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 	private static LogData iptablesLogData = CreateLog.createIptablesLog("src/main/resources/com/it/loganalyze/log/iptables.log");
-	private static LogData apacheAccess = CreateLog.createApacheAccessLog("src/main/resources/com/it/loganalyze/log/access.json");
-	private static LogData apacheError = CreateLog.createApacheAccessLog("src/main/resources/com/it/loganalyze/log/error.json");
+	private static LogData apacheAccessLogData = CreateLog.createApacheAccessLog("src/main/resources/com/it/loganalyze/log/access.json");
+	private static LogData apacheErrorLogData = CreateLog.createApacheAccessLog("src/main/resources/com/it/loganalyze/log/error.json");
+	
 	public static LogData getIptablesLogData() {
 		return iptablesLogData;
 	}
+	public static LogData getApacheError() {
+		return apacheErrorLogData;
+	}
+	public static LogData getApacheAccess() {
+		return apacheAccessLogData;
+	}
+	
 	@Override
 	public void start(Stage primaryStage) {
 	    try {
@@ -43,10 +51,5 @@ public class App extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	public static LogData getApacheError() {
-		return apacheError;
-	}
-	public static LogData getApacheAccess() {
-		return apacheAccess;
-	}
+
 }
