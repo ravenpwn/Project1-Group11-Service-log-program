@@ -1,26 +1,21 @@
 package com.it.loganalyze;
 
 import java.io.IOException;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 
 import com.it.loganalyze.log.LogData;
 import com.it.loganalyze.util.CreateLog;
-import com.it.loganalyze.util.Util;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 
 public class App extends Application {
+	
+	
+	
 	private static LogData iptablesLogData = CreateLog.createIptablesLog("src/main/resources/com/it/loganalyze/log/iptables.log");
 	private static LogData apacheAccess = CreateLog.createApacheAccessLog("src/main/resources/com/it/loganalyze/log/access.json");
 	private static LogData apacheError = CreateLog.createApacheAccessLog("src/main/resources/com/it/loganalyze/log/error.json");
@@ -41,6 +36,11 @@ public class App extends Application {
 	}
 	
 	public static void main(String[] args) {
+		convertRawToJson.ErrorLogCode.Convert errConvert = new convertRawToJson.ErrorLogCode.Convert();
+		errConvert.Start();
+		convertRawToJson.accessLogCode.Convert accConvert = new convertRawToJson.accessLogCode.Convert();
+		accConvert.Start();
+		
 		launch(args);
 	}
 	public static LogData getApacheError() {
