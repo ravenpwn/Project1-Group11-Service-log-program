@@ -128,8 +128,8 @@ public class AppController {
     		searchBar.setVisible(true);
     	}
     	displaySelectedBtn(apacheTableBtn);
-    	LogData apacheAccess = App.getApacheAccess();
-    	LogData apacheError = App.getApacheError();
+//    	LogData apacheAccess = App.getApacheAccess();
+//    	LogData apacheError = App.getApacheError();
     	
     	ShowLogTable show = new ShowLogTable(apacheAccess);
     	ShowLogTable show2 = new ShowLogTable(apacheError);
@@ -260,7 +260,7 @@ public class AppController {
             if (newTab == accessTab) {
             	searchBar.setVisible(true);
             } else if (newTab == errorTab) {
-                searchBar.setVisible(false);
+                searchBar.setVisible(true);
             }
         });
     }
