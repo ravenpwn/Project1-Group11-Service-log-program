@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 public class Debug extends Log implements GetField {
 	public LinkedHashMap<String, String> logLine = new LinkedHashMap<>();
 	private final ArrayList<String> keys = new ArrayList<>(Arrays.asList(
-			"Time","Attackname","id","Msg"));
+			"Time","Attackname","id","Msg","Severity","Data"));
 	
 	
 	public Debug(LinkedHashMap<String, String> line) {

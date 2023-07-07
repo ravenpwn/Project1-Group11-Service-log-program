@@ -2,6 +2,7 @@
     "line_1": {
         "transaction_id": "ZH9FITkL5dd7hbbtQg82hwAAAAI",
         "local_port": 80,
+        "attacktype": "RESPONSE-980-CORRELATION",
         "remote_port": 49578,
         "local_address": "127.0.0.1",
         "remote_address": "127.0.0.1",
@@ -12,6 +13,7 @@
     "line_2": {
         "transaction_id": "ZIdmfaubTMZu7YCF5Dnw@QAAAAI",
         "local_port": 80,
+        "attacktype": "RESPONSE-980-CORRELATION",
         "remote_port": 33212,
         "local_address": "127.0.0.1",
         "remote_address": "127.0.0.1",

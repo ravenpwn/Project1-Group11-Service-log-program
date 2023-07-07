@@ -72,7 +72,17 @@ public class LogParser {
 	public String getIpAddress() {
 		Matcher ip_addressMatcher = ip_addressPattern.matcher(line);
 		if(ip_addressMatcher.find()) {
-			return ip_addressMatcher.group().substring(1);
+			String ipString = ip_addressMatcher.group();
+			return ipString.substring(1,ipString.indexOf(":"));
+		}
+		return "-";
+	}
+	
+	public String getPort() {
+		Matcher ip_addressMatcher = ip_addressPattern.matcher(line);
+		if(ip_addressMatcher.find()) {
+			String portString = ip_addressMatcher.group();
+			return portString.substring(portString.indexOf(":") + 1);
 		}
 		return "-";
 	}

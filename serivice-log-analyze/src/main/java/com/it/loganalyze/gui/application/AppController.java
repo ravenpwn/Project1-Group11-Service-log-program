@@ -39,6 +39,14 @@ public class AppController {
 	private LogData iptablesLogData = App.getIptablesLogData();
 	private ShowLogTable iptablesLogTable = new ShowLogTable(iptablesLogData, iptablesLogData.getMainKeys());
 	
+	private LogData modsecurityAuditLog = App.getModSecurityAuditLog();
+	private LogData modsecurityDebugLog = App.getModSecurityDebugLog();
+	private LogData iptablesLogData = App.getIptablesLogData();
+	private LogData apacheAccess = App.getApacheAccess();
+	private LogData apacheError = App.getApacheError();
+	
+
+	
 	@FXML
 	private StackPane infoPane;
 	
@@ -102,7 +110,7 @@ public class AppController {
         displaySelectedBtn(apacheGraphBtn);
 
         // Create the charts
-        ShowLogCharts showLogCharts = new ShowLogCharts("src/main/resources/com/it/loganalyze/log/access.json", "Ip_address", "Timestamp");
+        ShowLogCharts showLogCharts = new ShowLogCharts(apacheAccess, "Ip_address", "Timestamp");
         HBox hbox = showLogCharts.createCharts();
 
         // Display the charts in the infoPane
@@ -123,8 +131,8 @@ public class AppController {
     		searchBar.setVisible(true);
     	}
     	displaySelectedBtn(apacheTableBtn);
-    	LogData apacheAccess = App.getApacheAccess();
-    	LogData apacheError = App.getApacheError();
+//    	LogData apacheAccess = App.getApacheAccess();
+//    	LogData apacheError = App.getApacheError();
     	
     	ShowLogTable show = new ShowLogTable(apacheAccess);
     	ShowLogTable show2 = new ShowLogTable(apacheError);
@@ -156,7 +164,7 @@ public class AppController {
         displaySelectedBtn(iptablesGraphBtn);
 
         // Create the charts
-        ShowLogCharts showLogCharts = new ShowLogCharts("src/main/resources/com/it/loganalyze/log/log_0.json", "SRC", "date");
+        ShowLogCharts showLogCharts = new ShowLogCharts(iptablesLogData, "Source ip address (SRC)", "Date");
         HBox hbox = showLogCharts.createCharts();
 
         // Display the charts in the infoPane
@@ -195,7 +203,7 @@ public class AppController {
         displaySelectedBtn(modsecGraphBtn);
 
         // Create the charts
-        ShowLogCharts showLogCharts = new ShowLogCharts("src/main/resources/com/it/loganalyze/log/audit.json", "remote_address", "Timestamp");
+        ShowLogCharts showLogCharts = new ShowLogCharts(modsecurityAuditLog, "remote_address", "Timestamp");
         HBox hbox = showLogCharts.createCharts();
 
         // Display the charts in the infoPane
@@ -261,7 +269,7 @@ public class AppController {
             if (newTab == accessTab) {
             	searchBar.setVisible(true);
             } else if (newTab == errorTab) {
-                searchBar.setVisible(false);
+                searchBar.setVisible(true);
             }
         });
     }

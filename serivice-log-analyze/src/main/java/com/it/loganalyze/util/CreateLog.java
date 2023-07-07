@@ -17,7 +17,8 @@ import com.it.loganalyze.log.LogData;
 public class CreateLog {
 	public static LogData createApacheAccessLog(String fileName) {
 		LogData logData;
-		JsonObject data = Util.readJsonFile(fileName).getAsJsonObject();
+		convertRawToJson.accessLogCode.Convert.Start(fileName);
+		JsonObject data = Util.readJsonFile("src/main/resources/com/it/loganalyze/log/access.json").getAsJsonObject();
 		ArrayList<Log> logList = new ArrayList<>();
 		// logList contains logLine in the form <key, value>
 
@@ -42,7 +43,8 @@ public class CreateLog {
 
 	public static LogData createApacheErrorLog(String fileName) {
 		LogData logData;
-		JsonObject data = Util.readJsonFile(fileName).getAsJsonObject();
+		convertRawToJson.ErrorLogCode.Convert.Start(fileName);
+		JsonObject data = Util.readJsonFile("src/main/resources/com/it/loganalyze/log/error.json").getAsJsonObject();
 		ArrayList<Log> logList = new ArrayList<>();
 		// logList contains logLine in the form <key, value>
 
@@ -91,7 +93,7 @@ public class CreateLog {
 	}
 	public static LogData createAudit(String inputFileName) {
 	    // Set a fixed output file name
-	    String outputFileName = "./log/audit.json";
+	    String outputFileName = "src/main/resources/com/it/loganalyze/log/audit.json";
 
 	    // Create a new instance of JsonConverter and convert the input file
 	    JsonConverter converter = new JsonConverter(inputFileName, outputFileName);
@@ -110,7 +112,7 @@ public class CreateLog {
 	        LinkedHashMap<String, String> map = new LinkedHashMap<>();
 	        JsonObject logLine = data.get(line).getAsJsonObject();
 	        for (String key : logLine.keySet()) {
-	            String value = logLine.get(key).toString();
+	            String value = logLine.get(key).getAsString();
 	            map.put(key, value);
 	        }
 	        Log auditlog = new Audit(map);
@@ -119,30 +121,32 @@ public class CreateLog {
 	    logData = new LogData(logList);
 	    return logData;
 	}
+
 	public static LogData createDebug(String fileName) {
-		LogData logData;
-		JsonObject data = Util.readJsonFile(fileName).getAsJsonObject();
-		ArrayList<Log> logList = new ArrayList<>();
-		// logList contains logLine in the form <key, value>
+	    LogData logData;
+	    JsonConverterForDebug.parseLogFile(fileName);
+	    JsonObject data = Util.readJsonFile("src/main/resources/com/it/loganalyze/log/debug.json").getAsJsonObject();
+	    ArrayList<Log> logList = new ArrayList<>();
+	    // logList contains logLine in the form <key, value>
 
-		for (String line : data.keySet()) {
-			// line is the index of each logLine
-			LinkedHashMap<String, String> map = new LinkedHashMap<>();
-			JsonObject logLine = data.get(line).getAsJsonObject();
-			for (String key : logLine.keySet()) {
-				// key is field in a log
-				// value is the value of that key field
-				String value = logLine.get(key).getAsString();
-				map.put(key, value);
-				// so map will be a LinkedHashMap that contains all pair <key, value> in a log
-			}
-			Log debug = new Debug(map);
-			logList.add(debug);
-		}
-		logData = new LogData(logList);
-		return logData;
-
+	    for (String line : data.keySet()) {
+	        // line is the index of each logLine
+	        LinkedHashMap<String, String> map = new LinkedHashMap<>();
+	        JsonObject logLine = data.get(line).getAsJsonObject();
+	        for (String key : logLine.keySet()) {
+	            // key is field in a log
+	            // value is the value of that key field
+	            String value = logLine.get(key).getAsString();
+	            map.put(key, value);
+	            // so map will be a LinkedHashMap that contains all pair <key, value> in a log
+	        }
+	        Log debug = new Debug(map);
+	        logList.add(debug);
+	    }
+	    logData = new LogData(logList);
+	    return logData;
 	}
+
 
 
 	public static void main(String[] args) {

@@ -11,45 +11,51 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 public class App extends Application {
-	
-	
-	
-	private static LogData iptablesLogData = CreateLog.createIptablesLog("src/main/resources/com/it/loganalyze/log/iptables.log");
-	private static LogData apacheAccessLogData = CreateLog.createApacheAccessLog("src/main/resources/com/it/loganalyze/log/access.json");
-	private static LogData apacheErrorLogData = CreateLog.createApacheAccessLog("src/main/resources/com/it/loganalyze/log/error.json");
-	
+
+	private static LogData iptablesLogData = CreateLog
+			.createIptablesLog("src/main/resources/com/it/loganalyze/log/iptables.log");
+	private static LogData apacheAccess = CreateLog.createApacheAccessLog("access.log");
+	private static LogData apacheError = CreateLog.createApacheErrorLog("error.log");
+	private static LogData modAudit = CreateLog.createAudit("src/main/resources/com/it/loganalyze/log/audit.log");
+	private static LogData modDebug = CreateLog.createDebug("src/main/resources/com/it/loganalyze/log/debug.log");
+
 	public static LogData getIptablesLogData() {
 		return iptablesLogData;
 	}
+
 	public static LogData getApacheError() {
-		return apacheErrorLogData;
+		return apacheError;
 	}
+
 	public static LogData getApacheAccess() {
-		return apacheAccessLogData;
+		return apacheAccess;
 	}
-	
+
+	public static LogData getModSecurityAuditLog() {
+		return modAudit;
+	}
+
+	public static LogData getModSecurityDebugLog() {
+		return modDebug;
+	}
+
 	@Override
 	public void start(Stage primaryStage) {
-	    try {
+		try {
 			Parent root = FXMLLoader.load(getClass().getResource("design/App.fxml"));
-			Scene scene = new Scene(root, 1336,768);
-	        primaryStage.setScene(scene);
-	        primaryStage.setTitle("Service Log Analysis");
-	        primaryStage.show();
+			Scene scene = new Scene(root, 1336, 768);
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Service Log Analysis");
+			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
-		convertRawToJson.ErrorLogCode.Convert errConvert = new convertRawToJson.ErrorLogCode.Convert();
-		errConvert.Start();
-		convertRawToJson.accessLogCode.Convert accConvert = new convertRawToJson.accessLogCode.Convert();
-		accConvert.Start();
-		
 		launch(args);
+
 	}
 
 }

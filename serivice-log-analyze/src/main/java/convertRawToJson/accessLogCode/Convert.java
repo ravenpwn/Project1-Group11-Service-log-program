@@ -8,13 +8,16 @@ import java.io.IOException;
 
 public class Convert {
 //    @SuppressWarnings("unchecked")
-	public void Start() {
+	private static final String inputfile = "src/main/resources/com/it/loganalyze/log/";
+	public static void Start(String filename) {
         //specify the path of the input file
-        String inputfile = "./resources/com/it/loganalyze/log/access.log";
         // Create a JsonObject
+		
+		String file = inputfile + filename;
+		
         JsonObject jsonObject = new JsonObject();
         
-        try (BufferedReader reader = new BufferedReader(new FileReader(inputfile))){
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))){
                 String line;
                 int lineNumber = 1;
                 //read each line from the inputfile
@@ -32,17 +35,12 @@ public class Convert {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String jsonString = gson.toJson(jsonObject);
         //specify the path of the output JSON file
-        String outputfile = "./resources/com/it/loganalyze/log/access.json";
+        String outputfile = "src/main/resources/com/it/loganalyze/log/access.json";
         //write the Json string to the output
         try (FileWriter fileWriter = new FileWriter(outputfile)){
             fileWriter.write(jsonString);
         }catch (IOException e){
                 e.printStackTrace();
         }
-	}
-	
-	public static void main(String[] args) {
-		Convert objConvert = new Convert();
-		objConvert.Start();
 	}
 }
