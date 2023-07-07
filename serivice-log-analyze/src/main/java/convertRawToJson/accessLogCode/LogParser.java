@@ -15,13 +15,13 @@ public class LogParser {
 	Pattern status_bytesizePattern = Pattern.compile(StringParser.getStatusByteS());
 	Pattern urlSourcePattern = Pattern.compile(StringParser.getUrlSource());
 	Pattern user_agentPattern = Pattern.compile(StringParser.getUserAgent());
-	Pattern cookiesPattern = Pattern.compile(StringParser.getCookie());
-	Pattern proxyPattern = Pattern.compile(StringParser.getProxy());
-	Pattern servernamePattern = Pattern.compile(StringParser.getServerName());
-	Pattern remotenamePattern = Pattern.compile(StringParser.getRemoteName());
-	Pattern respone_timePattern = Pattern.compile(StringParser.getResponeTime());
-	Pattern connection_statusPattern = Pattern.compile(StringParser.getConnectionStatus());
-	Pattern respone_headerPattern = Pattern.compile(StringParser.getResponeHeader());
+//	Pattern cookiesPattern = Pattern.compile(StringParser.getCookie());
+//	Pattern proxyPattern = Pattern.compile(StringParser.getProxy());
+//	Pattern servernamePattern = Pattern.compile(StringParser.getServerName());
+//	Pattern remotenamePattern = Pattern.compile(StringParser.getRemoteName());
+//	Pattern respone_timePattern = Pattern.compile(StringParser.getResponeTime());
+//	Pattern connection_statusPattern = Pattern.compile(StringParser.getConnectionStatus());
+//	Pattern respone_headerPattern = Pattern.compile(StringParser.getResponeHeader());
 	
 	
 	public LogParser(String line) {
@@ -86,89 +86,89 @@ public class LogParser {
 		return "-";
 	}
 
-	public String getCookie(){
-		Matcher cookiesMatcher = cookiesPattern.matcher(line);
-		int cnt = 1;
-		while(cookiesMatcher.find()) {
-			if(cnt == 2) {
-				return cookiesMatcher.group(1);
-			}
-			cnt ++;
-		}
-		
-        return "-";
-	}
-
-	public String getProxy(){
-		Matcher proxyMatcher = proxyPattern.matcher(line);
-		int cnt = 1;
-		while(proxyMatcher.find()) {
-			if(cnt == 3) {
-				return proxyMatcher.group(1);
-			}
-			cnt ++;
-		}
-		
-        return "-";
-	}
-
-	public String getServerName(){
-		Matcher servernameMatcher = servernamePattern.matcher(line);
-		int cnt = 1;
-		while(servernameMatcher.find()) {
-			if(cnt == 4) {
-				return servernameMatcher.group(1);
-			}
-			cnt ++;
-		}
-		
-        return "-";
-	}
-
-	public String getRemoteName(){
-		Matcher remotenameMatcher = remotenamePattern.matcher(line);
-		int cnt = 1;
-		while(remotenameMatcher.find()) {
-			if(cnt == 5) {
-				return remotenameMatcher.group(1);
-			}
-			cnt ++;
-		}
-		
-        return "-";
-	}
-
-	public String getResponeTime(){
-		Matcher respone_timeMatcher = respone_timePattern.matcher(line);
-		if(respone_timeMatcher.find()) {
-			return respone_timeMatcher.group(1);
-		}
-		return "-";
-	}
-
-	public String getConnectionStatus(){
-		Matcher connection_statusMatcher = connection_statusPattern.matcher(line);
-		int cnt = 1;
-		while(connection_statusMatcher.find()) {
-			if(cnt == 7) {
-				return connection_statusMatcher.group(1);
-			}
-			cnt ++;
-		}
-		
-        return "-";
-	}
-
-	public String getResponeHeader(){
-		Matcher respone_headerMatcher = respone_headerPattern.matcher(line);
-		int cnt = 1;
-		while(respone_headerMatcher.find()) {
-			if(cnt == 10) {
-				return respone_headerMatcher.group(1);
-			}
-			cnt ++;
-		}
-		
-        return "-";
-	}
+//	public String getCookie(){
+//		Matcher cookiesMatcher = cookiesPattern.matcher(line);
+//		int cnt = 1;
+//		while(cookiesMatcher.find()) {
+//			if(cnt == 2) {
+//				return cookiesMatcher.group(1);
+//			}
+//			cnt ++;
+//		}
+//		
+//        return "-";
+//	}
+//
+//	public String getProxy(){
+//		Matcher proxyMatcher = proxyPattern.matcher(line);
+//		int cnt = 1;
+//		while(proxyMatcher.find()) {
+//			if(cnt == 3) {
+//				return proxyMatcher.group(1);
+//			}
+//			cnt ++;
+//		}
+//		
+//        return "-";
+//	}
+//
+//	public String getServerName(){
+//		Matcher servernameMatcher = servernamePattern.matcher(line);
+//		int cnt = 1;
+//		while(servernameMatcher.find()) {
+//			if(cnt == 4) {
+//				return servernameMatcher.group(1);
+//			}
+//			cnt ++;
+//		}
+//		
+//        return "-";
+//	}
+//
+//	public String getRemoteName(){
+//		Matcher remotenameMatcher = remotenamePattern.matcher(line);
+//		int cnt = 1;
+//		while(remotenameMatcher.find()) {
+//			if(cnt == 5) {
+//				return remotenameMatcher.group(1);
+//			}
+//			cnt ++;
+//		}
+//		
+//        return "-";
+//	}
+//
+//	public String getResponeTime(){
+//		Matcher respone_timeMatcher = respone_timePattern.matcher(line);
+//		if(respone_timeMatcher.find()) {
+//			return respone_timeMatcher.group(1);
+//		}
+//		return "-";
+//	}
+//
+//	public String getConnectionStatus(){
+//		Matcher connection_statusMatcher = connection_statusPattern.matcher(line);
+//		int cnt = 1;
+//		while(connection_statusMatcher.find()) {
+//			if(cnt == 7) {
+//				return connection_statusMatcher.group(1);
+//			}
+//			cnt ++;
+//		}
+//		
+//        return "-";
+//	}
+//
+//	public String getResponeHeader(){
+//		Matcher respone_headerMatcher = respone_headerPattern.matcher(line);
+//		int cnt = 1;
+//		while(respone_headerMatcher.find()) {
+//			if(cnt == 10) {
+//				return respone_headerMatcher.group(1);
+//			}
+//			cnt ++;
+//		}
+//		
+//        return "-";
+//	}
 }

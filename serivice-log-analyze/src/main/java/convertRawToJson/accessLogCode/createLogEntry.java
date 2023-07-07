@@ -20,13 +20,13 @@ public class createLogEntry {
         logObject.addProperty("Bytesize", logEntry.getByteSize());
         logObject.addProperty("UrlSource", logEntry.getUrlSource());
         logObject.addProperty("User_agent", logEntry.getUserAgent());
-        logObject.addProperty("Cookie", logEntry.getCookie());
-        logObject.addProperty("Proxy", logEntry.getXForwardedFor());
-        logObject.addProperty("Server_name", logEntry.getServerName());
-        logObject.addProperty("Remote_name", logEntry.getRemoteName());
-        logObject.addProperty("Response_time", logEntry.getResponeTime());
-        logObject.addProperty("Connection_status", logEntry.getConnectionStatus());
-        logObject.addProperty("Respone_header", logEntry.getResponeHeader());
+//        logObject.addProperty("Cookie", logEntry.getCookie());
+//        logObject.addProperty("Proxy", logEntry.getXForwardedFor());
+//        logObject.addProperty("Server_name", logEntry.getServerName());
+//        logObject.addProperty("Remote_name", logEntry.getRemoteName());
+//        logObject.addProperty("Response_time", logEntry.getResponeTime());
+//        logObject.addProperty("Connection_status", logEntry.getConnectionStatus());
+//        logObject.addProperty("Respone_header", logEntry.getResponeHeader());
 
         return logObject;
 	}
@@ -49,13 +49,13 @@ public class createLogEntry {
         String bytesize = logParser.getStatusByteS().split(" ")[1]; // 1024
         String UrlSource = logParser.getUrlSource(); // http://referer.com
         String userAgent = logParser.getUserAgent(); // Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36\
-        String cookie = logParser.getCookie(); // my_cookie_value
-        String X_forwarded_for = logParser.getProxy(); //proxy_ip_address
-        String servername = logParser.getServerName(); //example.com
-        String remotename = logParser.getRemoteName(); //john_doe
-        String respone_time = logParser.getResponeTime(); //0.123
-        String connection = logParser.getConnectionStatus(); //keep-alive
-        String respone_header = logParser.getResponeHeader(); //Content-Type: text/html; charset=UTF-8, X-Powered-By: PHP/7.4.1
+//        String cookie = logParser.getCookie(); // my_cookie_value
+//        String X_forwarded_for = logParser.getProxy(); //proxy_ip_address
+//        String servername = logParser.getServerName(); //example.com
+//        String remotename = logParser.getRemoteName(); //john_doe
+//        String respone_time = logParser.getResponeTime(); //0.123
+//        String connection = logParser.getConnectionStatus(); //keep-alive
+//        String respone_header = logParser.getResponeHeader(); //Content-Type: text/html; charset=UTF-8, X-Powered-By: PHP/7.4.1
 
         //parse the timestamp into a Date object;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss ZZZZ");
@@ -66,6 +66,6 @@ public class createLogEntry {
                 timestamp = null;
         }
 
-        return new LogEntry(ipAddress, user_identity, user_name, timestamp, httpMethod, URL, version, statusCode, bytesize, UrlSource, userAgent, cookie, X_forwarded_for, servername, remotename, respone_time, connection, respone_header);
+        return new LogEntry(ipAddress, user_identity, user_name, timestamp, httpMethod, URL, version, statusCode, bytesize, UrlSource, userAgent);
 	}
 }
