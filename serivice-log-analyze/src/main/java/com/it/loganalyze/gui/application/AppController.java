@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
@@ -42,9 +43,11 @@ public class AppController {
 	private LogData iptablesLogData = App.getIptablesLogData();
 	private LogData apacheAccess = App.getApacheAccess();
 	private LogData apacheError = App.getApacheError();
-	private ShowLogTable apacheLogTable = new ShowLogTable(apacheAccess);
+	private ShowLogTable apacheAccessLogTable = new ShowLogTable(apacheAccess);
+	private ShowLogTable apacheErrorLogTable = new ShowLogTable(apacheError);
 	private ShowLogTable iptablesLogTable = new ShowLogTable(iptablesLogData, iptablesLogData.getMainKeys());
-	
+	private ShowLogTable auditLogTable = new ShowLogTable(modsecurityAuditLog);
+	private SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
 
 	@FXML
 	private StackPane infoPane;
@@ -120,7 +123,6 @@ public class AppController {
 
     @FXML
     void apacheLabelClick(MouseEvent event) {
-    	whatLog = "apache";
     	showButton(0);
     }
 
@@ -129,15 +131,11 @@ public class AppController {
     	if(!searchBar.isVisible()) {
     		searchBar.setVisible(true);
     	}
-    	displaySelectedBtn(apacheTableBtn);
-//    	LogData apacheAccess = App.getApacheAccess();
-//    	LogData apacheError = App.getApacheError();
+    	displaySelectedBtn(apacheTableBtn);	
     	
-    	ShowLogTable show = new ShowLogTable(apacheAccess);
-    	ShowLogTable show2 = new ShowLogTable(apacheError);
     	try {
-			accessTab.setContent(show.geTableView());
-			errorTab.setContent(show2.geTableView());
+			accessTab.setContent(apacheAccessLogTable.geTableView());
+			errorTab.setContent(apacheErrorLogTable.geTableView());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -303,12 +301,17 @@ public class AppController {
     
 	public void search(HashMap<String, Object> searchMap) {
 		switch (whatLog) {
-		case "apache":
-			apacheLogTable.filterByFields(searchMap);
+		case "apacheAccess":
+			apacheAccessLogTable.filterByFields(searchMap);
+			break;
+		case "apacheError":
+			apacheAccessLogTable.filterByFields(searchMap);
+			break;
 		case "iptables":
 			iptablesLogTable.filterByFields(searchMap);
 			break;
-
+		case "modsec":
+			auditLogTable.filterByFields(searchMap);
 		default:
 			break;
 		}
