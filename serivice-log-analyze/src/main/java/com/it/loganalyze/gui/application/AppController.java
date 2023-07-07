@@ -36,17 +36,16 @@ public class AppController {
 	private TabPane tabPane = new TabPane();
 	private Tab accessTab = new Tab("access.log");
 	private Tab errorTab =  new Tab("error.log");
-	private LogData iptablesLogData = App.getIptablesLogData();
-	private ShowLogTable iptablesLogTable = new ShowLogTable(iptablesLogData, iptablesLogData.getMainKeys());
 	
 	private LogData modsecurityAuditLog = App.getModSecurityAuditLog();
 	private LogData modsecurityDebugLog = App.getModSecurityDebugLog();
 	private LogData iptablesLogData = App.getIptablesLogData();
 	private LogData apacheAccess = App.getApacheAccess();
 	private LogData apacheError = App.getApacheError();
+	private ShowLogTable apacheLogTable = new ShowLogTable(apacheAccess);
+	private ShowLogTable iptablesLogTable = new ShowLogTable(iptablesLogData, iptablesLogData.getMainKeys());
 	
 
-	
 	@FXML
 	private StackPane infoPane;
 	
@@ -184,8 +183,6 @@ public class AppController {
     		searchBar.setVisible(true);
     	}
     	displaySelectedBtn(iptablesTableBtn);
-    	LogData iptablesLogData = App.getIptablesLogData();
-    	
     	
     	try {
 			showTable(iptablesLogTable.geTableView());
@@ -238,16 +235,10 @@ public class AppController {
 		}
     	System.out.println(date);
     	System.out.println(ipString);
-    	if(date == null) {    		
-    		search(ipString);
-    	} else if (ipString == null){
-    		search(date);
-    	} else {
-    		HashMap<String, Object> searchMap =  new HashMap<>();
-    		searchMap.put("Date", date);
-    		searchMap.put("Src IP address", ipString);
-			search(searchMap);
-		}
+    	HashMap<String, Object> searchMap =  new HashMap<>();
+    	searchMap.put("Date", date);
+    	searchMap.put("Src IP address", ipString);
+    	search(searchMap);
     }
    
 	@FXML
@@ -310,76 +301,16 @@ public class AppController {
     	infoPane.getChildren().set(0, (Node) node);
 	}
     
-    private void search(LocalDate date) {
-		// TODO Auto-generated method stub
-		switch (whatLog) {
-		case "apache":
-			LogData apacheAccess = App.getApacheAccess().filterByDate(date);
-			System.out.println(apacheAccess.getData());
-			LogData apacheError = App.getApacheError();
-			ShowLogTable show = new ShowLogTable(apacheAccess);
-	    	ShowLogTable show2 = new ShowLogTable(apacheError);
-	    	try {
-				accessTab.setContent(show.geTableView());
-				errorTab.setContent(show2.geTableView());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-		case "iptables":
-			displaySelectedBtn(iptablesTableBtn);
-	    	LogData iptablesLogData = App.getIptablesLogData().filterByDate(date);
-	    	ShowLogTable show3 = new ShowLogTable(iptablesLogData, iptablesLogData.getMainKeys());
-	    	
-	    	try {
-				showTable(show3.geTableView());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-		default:
-			break;
-		}
-	}
-
-
-
-	private void search(String ipString) {
-		// TODO Auto-generated method stub
-		switch (whatLog) {
-		case "apache":
-			LogData apacheAccess = App.getApacheAccess().filterByIpAddress(ipString,4);
-			LogData apacheError = App.getApacheError();
-			ShowLogTable show = new ShowLogTable(apacheAccess);
-	    	ShowLogTable show2 = new ShowLogTable(apacheError);
-	    	try {
-				accessTab.setContent(show.geTableView());
-				errorTab.setContent(show2.geTableView());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-		case "iptables":
-	    	LogData iptablesLogData = App.getIptablesLogData().filterByIpAddress(ipString, 4);
-	    	ShowLogTable show3 = new ShowLogTable(iptablesLogData, iptablesLogData.getMainKeys());
-	    	
-	    	try {
-				showTable(show3.geTableView());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-		default:
-			break;
-		}
-	}
 	public void search(HashMap<String, Object> searchMap) {
-		if(whatLog.equals("iptables")) {
+		switch (whatLog) {
+		case "apache":
+			apacheLogTable.filterByFields(searchMap);
+		case "iptables":
 			iptablesLogTable.filterByFields(searchMap);
+			break;
+
+		default:
+			break;
 		}
 	}
 }

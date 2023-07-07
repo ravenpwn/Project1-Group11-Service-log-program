@@ -56,13 +56,18 @@ public class ShowLogTable {
 	}
 	
 	public void filterByFields(HashMap<String, Object> searchMap) {
-		filteredList = tableView.getItems().filtered(log -> {
+		filteredList = observableList.filtered(log -> {
 			for (String i: searchMap.keySet()) {
 				boolean res;
 				if(i.equals("Date")) {
+					LocalDate searchDate;
 					LocalDate date = log.getDate().toLocalDate();
-					LocalDate searchDate = (LocalDate) searchMap.get(i); 
-					res = date.isEqual(searchDate);
+					if(searchMap.get(i) == null) {
+						res = true;
+					} else {
+						searchDate = (LocalDate) searchMap.get(i);
+						res = date.isEqual(searchDate);
+					}
 				} else if(i.equals("Src IP address")) {
 					res = log.getSrcIp().startsWith(searchMap.get(i).toString());
 				} else {
