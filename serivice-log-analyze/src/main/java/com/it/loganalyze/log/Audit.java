@@ -1,6 +1,8 @@
 package com.it.loganalyze.log;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -28,14 +30,24 @@ public class Audit extends Log implements GetField {
 
 	@Override
 	public LocalDateTime getDate() {
-		// TODO Auto-generated method stub
-		return null;
+	    String dateString = getField("Timestamp");
+	    LocalDateTime dateTime = null;
+	    try {
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss Z");
+	        dateTime = LocalDateTime.parse(dateString, formatter);
+	    } catch (DateTimeParseException e) {
+	        // handle exception
+	    }
+	    return dateTime;
 	}
 
 	@Override
 	public String getSrcIp() {
-		// TODO Auto-generated method stub
-		return null;
+		String res = logLine.get("remote_address");
+		if(res == null) {			
+			return "";
+		}
+		return res;
 	}
 
 	@Override

@@ -112,12 +112,25 @@ public class AppController {
         displaySelectedBtn(apacheGraphBtn);
 
         // Create the charts
-        ShowLogCharts showLogCharts = new ShowLogCharts(apacheAccess, "Ip_address", "Timestamp");
-        HBox hbox = showLogCharts.createCharts();
+        ShowLogCharts showLogChartsAccess = new ShowLogCharts(apacheAccess, "Ip_address", "Timestamp");
+        HBox hboxAccess = showLogChartsAccess.createCharts();
+        
+        ShowLogCharts showLogChartsError = new ShowLogCharts(apacheError, "Client_Ip", "Timestamp");
+        HBox hboxError = showLogChartsError.createCharts();
+
+        // Create a TabPane to hold both charts
+        TabPane tabPane = new TabPane();
+        Tab accessTab = new Tab("Access");
+        accessTab.setContent(hboxAccess);
+        Tab errorTab = new Tab("Error");
+        errorTab.setContent(hboxError);
+        tabPane.getTabs().addAll(accessTab, errorTab);
 
         // Display the charts in the infoPane
-        infoPane.getChildren().set(0, hbox);
+        infoPane.getChildren().set(0, tabPane);
     }
+
+
 
 
 
@@ -161,7 +174,7 @@ public class AppController {
         displaySelectedBtn(iptablesGraphBtn);
 
         // Create the charts
-        ShowLogCharts showLogCharts = new ShowLogCharts(iptablesLogData, "Source ip address (SRC)", "Date");
+        ShowLogChartsForIPTables showLogCharts = new ShowLogChartsForIPTables("src/main/resources/com/it/loganalyze/log/log_1.json", "Source ip address (SRC)", "Date");
         HBox hbox = showLogCharts.createCharts();
 
         // Display the charts in the infoPane
@@ -197,13 +210,26 @@ public class AppController {
         }
         displaySelectedBtn(modsecGraphBtn);
 
-        // Create the charts
-        ShowLogCharts showLogCharts = new ShowLogCharts(modsecurityAuditLog, "remote_address", "Timestamp");
-        HBox hbox = showLogCharts.createCharts();
+        // Create the audit chart
+        ShowLogCharts showLogChartsAudit = new ShowLogCharts(modsecurityAuditLog, "remote_address", "Timestamp");
+        HBox hboxAudit = showLogChartsAudit.createCharts();
+
+        // Create the debug chart
+        //ShowLogCharts showLogChartsDebug = new ShowLogCharts(modsecurityDebugLog, "id", "Time");
+        //HBox hboxDebug = showLogChartsDebug.createCharts();
+
+        // Create a TabPane to hold both charts
+        TabPane tabPane = new TabPane();
+        Tab auditTab = new Tab("Audit");
+        auditTab.setContent(hboxAudit);
+        //Tab debugTab = new Tab("Debug");
+        //debugTab.setContent(hboxDebug);
+        tabPane.getTabs().addAll(auditTab);
 
         // Display the charts in the infoPane
-        infoPane.getChildren().set(0, hbox);
+        infoPane.getChildren().set(0, tabPane);
     }
+
 
 
 

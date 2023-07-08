@@ -56,7 +56,7 @@ public class ShowLogCharts {
                     pieChartFX.updateChart(day);
                     timeSeriesChartFX.updateChart(day, true); // pass a flag to indicate that hourly data should be displayed
                 } catch (Exception e) {
-                    e.printStackTrace();
+                 
                 }
             });
 
@@ -64,7 +64,7 @@ public class ShowLogCharts {
             HBox hbox = new HBox(pieChart, timeSeriesChart);
             return hbox;
         } catch (Exception e) {
-            e.printStackTrace();
+          
         }
         return null;
     }
@@ -146,7 +146,7 @@ public class ShowLogCharts {
                     // Parse the value as a date
                     Date date = null;
                     if (value.contains("/")) {
-                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
+                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss.SSSSSS Z");
                         date = dateFormat1.parse(value);
                     } else if (value.contains("ICT")) {
                         SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
@@ -160,6 +160,7 @@ public class ShowLogCharts {
                         date = dateFormat4.parse(value);
                     }
                     SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+
                     String currentDay = dayFormat.format(date);
 
                     // Check if the date is within the given day
@@ -232,8 +233,8 @@ public class ShowLogCharts {
 
                     // Parse the value as a date
                     Date date = null;
-                    if (value.contains("/")) {    
-                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
+                    if (value.contains("/")) {
+                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss.SSSSSS Z");
                         date = dateFormat1.parse(value);
                     } else if (value.contains("ICT")) {
                         SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
@@ -247,6 +248,7 @@ public class ShowLogCharts {
                         date = dateFormat4.parse(value);
                     }
                     SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+
                     String day = dayFormat.format(date);
 
                     // Update the counts in the map
@@ -304,7 +306,7 @@ public class ShowLogCharts {
                     // Parse the value as a date
                     Date date = null;
                     if (value.contains("/")) {
-                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
+                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss.SSSSSS Z");
                         date = dateFormat1.parse(value);
                     } else if (value.contains("ICT")) {
                         SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
@@ -318,6 +320,7 @@ public class ShowLogCharts {
                         date = dateFormat4.parse(value);
                     }
                     SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+
                     String currentDay = dayFormat.format(date);
 
                     // Check if the date is within the given day
