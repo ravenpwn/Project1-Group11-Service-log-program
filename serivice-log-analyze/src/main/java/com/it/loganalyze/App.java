@@ -72,12 +72,6 @@ public class App extends Application {
 
 	public static void main(String[] args) {
 		createLog();
-		ArrayList<LinkedHashMap<String, String>> tmp = new ArrayList<>();
-		for (Log l:iptablesLogData.getData()) {
-			tmp.add(l.getLogLine());
-		}
-		Util.writeToJsonFile(tmp);
-		
 		launch(args);
 	}
 

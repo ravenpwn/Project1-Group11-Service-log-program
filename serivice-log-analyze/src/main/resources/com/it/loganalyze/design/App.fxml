@@ -48,7 +48,7 @@
             <FlowPane fx:id="searchBar" alignment="TOP_CENTER" prefHeight="15.0" prefWidth="1186.0" style="-fx-padding: 8 0;" BorderPane.alignment="CENTER">
                <children>
                   <TextField fx:id="ipSearch" prefWidth="200.0" promptText="Search by IP address" />
-                  <DatePicker fx:id="dateSearch" editable="false" maxWidth="1.7976931348623157E308" promptText="Search by Date" />
+                  <DatePicker fx:id="dateSearch" maxWidth="1.7976931348623157E308" promptText="Search by Date" />
                   <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#searchBtnPressed" prefHeight="20.0" prefWidth="70.0" text="Search">
                      <FlowPane.margin>
                         <Insets left="5.0" right="5.0" />

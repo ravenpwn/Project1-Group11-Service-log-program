@@ -1,6 +1,8 @@
 package com.it.loganalyze.log;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -30,12 +32,13 @@ public class Debug extends Log {
 	@Override
 	public LocalDateTime getDate() {
 		String dateString = getField("Time");
-		LocalDateTime dateTime = null;
+		System.out.println(dateString);
+		LocalDateTime dateTime = LocalDateTime.of(LocalDate.of(1970, 1, 1), LocalTime.of(0, 1));
 		try {
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss.SSSSSS");
 			dateTime = LocalDateTime.parse(dateString, formatter);
 		} catch (DateTimeParseException e) {
-			// handle exception
+			
 		}
 		return dateTime;
 	}
@@ -43,7 +46,7 @@ public class Debug extends Log {
 	@Override
 	public String getSrcIp() {
 		// TODO Auto-generated method stub
-		return null;
+		return "None";
 	}
 
 	@Override

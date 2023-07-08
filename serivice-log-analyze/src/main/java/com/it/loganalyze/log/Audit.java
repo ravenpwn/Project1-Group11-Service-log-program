@@ -1,6 +1,8 @@
 package com.it.loganalyze.log;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -31,13 +33,15 @@ public class Audit extends Log implements GetField {
 	@Override
 	public LocalDateTime getDate() {
 	    String dateString = getField("Timestamp");
-	    LocalDateTime dateTime = null;
+	    System.out.println(dateString.charAt(14));
+	    LocalDateTime dateTime = LocalDateTime.of(LocalDate.of(1970, 1, 1), LocalTime.of(0, 1));
 	    try {
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss Z");
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss.SSSSSS Z");
 	        dateTime = LocalDateTime.parse(dateString, formatter);
 	    } catch (DateTimeParseException e) {
-	        // handle exception
+	        System.err.println(e.getMessage());
 	    }
+	    System.out.println(dateTime);
 	    return dateTime;
 	}
 
