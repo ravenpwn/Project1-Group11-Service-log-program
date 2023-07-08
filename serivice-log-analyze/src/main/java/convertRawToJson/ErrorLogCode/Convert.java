@@ -10,12 +10,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 public class Convert {
-	private static final String inputfile = "src/main/resources/com/it/loganalyze/log/";
-
-	public static void Start(String filename) {
-		// TODO Auto-generated method stub
-		
-		String file = inputfile + filename; 
+	public static void Start(String file) {
+		// TODO Auto-generated method stub 
 		
 		JsonObject jsonObject = new JsonObject();
 		

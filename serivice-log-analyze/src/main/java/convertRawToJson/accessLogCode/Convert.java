@@ -8,12 +8,10 @@ import java.io.IOException;
 
 public class Convert {
 //    @SuppressWarnings("unchecked")
-	private static final String inputfile = "src/main/resources/com/it/loganalyze/log/";
-	public static void Start(String filename) {
+	public static void Start(String file) {
         //specify the path of the input file
         // Create a JsonObject
 		
-		String file = inputfile + filename;
 		
         JsonObject jsonObject = new JsonObject();
         
