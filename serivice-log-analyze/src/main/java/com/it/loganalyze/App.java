@@ -1,7 +1,10 @@
 package com.it.loganalyze;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
+import com.it.loganalyze.log.Log;
 import com.it.loganalyze.log.LogData;
 import com.it.loganalyze.util.CreateLog;
 import com.it.loganalyze.util.Util;
@@ -69,6 +72,12 @@ public class App extends Application {
 
 	public static void main(String[] args) {
 		createLog();
+		ArrayList<LinkedHashMap<String, String>> tmp = new ArrayList<>();
+		for (Log l:iptablesLogData.getData()) {
+			tmp.add(l.getLogLine());
+		}
+		Util.writeToJsonFile(tmp);
+		
 		launch(args);
 	}
 

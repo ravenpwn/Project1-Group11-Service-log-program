@@ -81,13 +81,13 @@ public class Util {
 		BufferedWriter writer = null;
 		FileWriter fileWriter = null;
 		try {
-			fileWriter = new FileWriter("src/main/resources/com/it/loganalyze/tmp" + random.nextInt()+ ".json");
+			fileWriter = new FileWriter("src/main/resources/com/it/loganalyze/log" + random.nextInt()+ ".json");
 			writer = new BufferedWriter(fileWriter);
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			String element = gson.toJson(obj);
 			writer.write(element);
 		} catch (Exception e) {
-			System.err.println("Error reading file: " + e.getMessage() );
+			System.err.println("Error writing file: " + e.getMessage() );
 		} 
 		finally {
 			try {
