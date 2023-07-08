@@ -31,12 +31,11 @@ public class ApacheAccessLog extends Log implements GetField {
 
 	@Override
 	public LocalDateTime getDate() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd HH:mm:ss zzz yyyy");
-	    LocalDateTime dateTime = LocalDateTime.parse(getField("Timestamp").substring(4), formatter);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss zzz yyyy");
+	    LocalDateTime dateTime = LocalDateTime.parse(getField("Timestamp"), formatter);
 		// TODO Auto-generated method stub
 		return dateTime;
 	}
-
 	@Override
 	public String getSrcIp() {
 		String res = logLine.get("Ip_address");

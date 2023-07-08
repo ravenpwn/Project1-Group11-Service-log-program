@@ -257,8 +257,10 @@ public class AppController {
         tabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
             if (newTab == accessTab) {
             	searchBar.setVisible(true);
+            	whatLog = "apacheAccess";
             } else if (newTab == errorTab) {
                 searchBar.setVisible(true);
+                whatLog = "apacheError";
             }
         });
     }
@@ -300,12 +302,20 @@ public class AppController {
 	}
     
 	public void search(HashMap<String, Object> searchMap) {
+		
+		if (whatLog == null) {
+	        return;
+	    }
 		switch (whatLog) {
 		case "apacheAccess":
-			apacheAccessLogTable.filterByFields(searchMap);
+			if (apacheAccessLogTable != null) {
+                apacheAccessLogTable.filterByFields(searchMap);
+            }
 			break;
 		case "apacheError":
-			apacheAccessLogTable.filterByFields(searchMap);
+			if (apacheErrorLogTable != null) {
+                apacheErrorLogTable.filterByFields(searchMap);
+            }
 			break;
 		case "iptables":
 			iptablesLogTable.filterByFields(searchMap);

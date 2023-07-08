@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 
 public class ApacheErrorLog extends Log implements GetField {
 	public LinkedHashMap<String, String> logLine = new LinkedHashMap<>();
@@ -29,10 +30,9 @@ public class ApacheErrorLog extends Log implements GetField {
 
 	@Override
 	public LocalDateTime getDate() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss yyyy");
-	    LocalDateTime dateTime = LocalDateTime.parse(getField("Timestamp").substring(4), formatter);
-		// TODO Auto-generated method stub
-		return dateTime;
+	    String dateString = logLine.get("Timestamp");
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+	    return LocalDateTime.parse(dateString, formatter);
 	}
 
 	@Override

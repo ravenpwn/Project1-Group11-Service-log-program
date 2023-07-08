@@ -36,7 +36,7 @@ public class LogData {
 		ArrayList<Log> filteredLog = new ArrayList<>();
 		for (Log l: data) {
 			if(l.getDate().toLocalDate().equals(keyword)) {
-		
+				filteredLog.add(l);
 			}
 			System.out.println(l.getDate().toLocalDate());
 			System.out.println(keyword);
