@@ -39,8 +39,8 @@ public class ApacheAccessLog extends Log implements GetField {
 
 	@Override
 	public String getSrcIp() {
-		// TODO Auto-generated method stub
-		return getField("Ip_address");
+		String res = logLine.get("Ip_address");
+		return res;
 	}
 
 	@Override

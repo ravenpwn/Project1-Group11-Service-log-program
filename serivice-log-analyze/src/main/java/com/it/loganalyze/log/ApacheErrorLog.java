@@ -1,6 +1,7 @@
 package com.it.loganalyze.log;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -28,14 +29,16 @@ public class ApacheErrorLog extends Log implements GetField {
 
 	@Override
 	public LocalDateTime getDate() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss yyyy");
+	    LocalDateTime dateTime = LocalDateTime.parse(getField("Timestamp").substring(4), formatter);
 		// TODO Auto-generated method stub
-		return null;
+		return dateTime;
 	}
 
 	@Override
 	public String getSrcIp() {
-		// TODO Auto-generated method stub
-		return null;
+		String res = logLine.get("Client_Ip");
+		return res;
 	}
 
 	@Override
