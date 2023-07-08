@@ -8,47 +8,47 @@ import java.util.HashMap;
 import com.it.loganalyze.App;
 import com.it.loganalyze.log.Log;
 import com.it.loganalyze.log.LogData;
-import com.it.loganalyze.util.CreateLog;
+import com.it.loganalyze.util.Util;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 public class AppController {
 	private ArrayList<Button> btns = new ArrayList<>();
 	private String whatLog;
 	private TabPane tabPane = new TabPane();
-	private Tab accessTab = new Tab("access.log");
-	private Tab errorTab =  new Tab("error.log");
+	private Tab tab1 = new Tab();
+	private Tab tab2 =  new Tab();
 	
 	private LogData modsecurityAuditLog = App.getModSecurityAuditLog();
 	private LogData modsecurityDebugLog = App.getModSecurityDebugLog();
 	private LogData iptablesLogData = App.getIptablesLogData();
 	private LogData apacheAccess = App.getApacheAccess();
 	private LogData apacheError = App.getApacheError();
-	private ShowLogTable apacheAccessLogTable = new ShowLogTable(apacheAccess);
-	private ShowLogTable apacheErrorLogTable = new ShowLogTable(apacheError);
+	private ShowLogTable apacheAccessLogTable = new ShowLogTable(apacheAccess, apacheAccess.getMainKeys());
+	private ShowLogTable apacheErrorLogTable = new ShowLogTable(apacheError, apacheError.getMainKeys());
 	private ShowLogTable iptablesLogTable = new ShowLogTable(iptablesLogData, iptablesLogData.getMainKeys());
-	private ShowLogTable auditLogTable = new ShowLogTable(modsecurityAuditLog);
-	private SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-
+	private ShowLogTable auditLogTable = new ShowLogTable(modsecurityAuditLog, modsecurityAuditLog.getMainKeys());
+	private ShowLogTable debugLogTable = new ShowLogTable(modsecurityDebugLog, modsecurityDebugLog.getMainKeys());
 	@FXML
 	private StackPane infoPane;
 	
@@ -69,6 +69,9 @@ public class AppController {
     
     @FXML
     private Label dashboardLabel;
+    
+    @FXML
+    private ScrollPane detailInfoPane;
     
     @FXML
     private TextField ipSearch;
@@ -123,6 +126,7 @@ public class AppController {
 
     @FXML
     void apacheLabelClick(MouseEvent event) {
+    	whatLog = "apache";
     	showButton(0);
     }
 
@@ -134,11 +138,12 @@ public class AppController {
     	displaySelectedBtn(apacheTableBtn);	
     	
     	try {
-			accessTab.setContent(apacheAccessLogTable.geTableView());
-			errorTab.setContent(apacheErrorLogTable.geTableView());
+    		tab1.setText("Access.log");
+    		tab2.setText("Error.log");
+			tab1.setContent(attachDetail(apacheAccessLogTable.geTableView()));
+			tab2.setContent(attachDetail(apacheErrorLogTable.geTableView()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("Error while creating table");
 		}
     	
     	showTable(tabPane);
@@ -183,7 +188,7 @@ public class AppController {
     	displaySelectedBtn(iptablesTableBtn);
     	
     	try {
-			showTable(iptablesLogTable.geTableView());
+			showTable(attachDetail(iptablesLogTable.geTableView()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -218,7 +223,18 @@ public class AppController {
     	if(!searchBar.isVisible()) {
     		searchBar.setVisible(true);
     	}
-    	displaySelectedBtn(modsecTableBtn);
+    	displaySelectedBtn(modsecTableBtn);	
+    	
+    	try {
+    		tab1.setText("Audit.log");
+    		tab2.setText("Debug.log");
+			tab1.setContent(attachDetail(auditLogTable.geTableView()));
+			tab2.setContent(attachDetail(debugLogTable.geTableView()));
+		} catch (IOException e) {
+			System.err.println("Error while creating table");
+		}
+    	
+    	showTable(tabPane);
     }
     
     @FXML
@@ -250,14 +266,14 @@ public class AppController {
     	
     	bindVisible();
     	searchBar.setHgap(10);
-    	tabPane.getTabs().add(accessTab);
-    	tabPane.getTabs().add(errorTab);
-    	accessTab.setClosable(false);
-    	errorTab.setClosable(false);
+    	tabPane.getTabs().add(tab1);
+    	tabPane.getTabs().add(tab2);
+    	tab1.setClosable(false);
+    	tab2.setClosable(false);
         tabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
-            if (newTab == accessTab) {
+            if (newTab == tab1) {
             	searchBar.setVisible(true);
-            } else if (newTab == errorTab) {
+            } else if (newTab == tab2) {
                 searchBar.setVisible(true);
             }
         });
@@ -301,19 +317,54 @@ public class AppController {
     
 	public void search(HashMap<String, Object> searchMap) {
 		switch (whatLog) {
-		case "apacheAccess":
-			apacheAccessLogTable.filterByFields(searchMap);
-			break;
-		case "apacheError":
-			apacheAccessLogTable.filterByFields(searchMap);
+		case "apache":
+			if(tabPane.getSelectionModel().getSelectedItem().equals(tab1)) {				
+				apacheAccessLogTable.filterByFields(searchMap);
+			} else {
+				apacheErrorLogTable.filterByFields(searchMap);
+			}
 			break;
 		case "iptables":
 			iptablesLogTable.filterByFields(searchMap);
 			break;
 		case "modsec":
-			auditLogTable.filterByFields(searchMap);
+			if(tabPane.getSelectionModel().getSelectedItem().equals(tab1)) {				
+				auditLogTable.filterByFields(searchMap);
+			} else {
+				debugLogTable.filterByFields(searchMap);
+			}
+			break;
 		default:
 			break;
 		}
+	}
+	private TableView<Log> attachDetail(TableView<Log> tableView) {
+        if (tableView.getRowFactory() == null) {
+        	tableView.setRowFactory(tv -> {
+        		TableRow<Log> row = new TableRow<>();
+        		row.setOnMouseClicked(event -> {
+        			if (event.getClickCount() == 2 && !row.isEmpty()) { 
+        				Log rowData = row.getItem();
+        				createPopup(Util.prettyPrintMap(rowData.getLogLine()));
+        			}
+        		});
+        		return row;
+        	});
+        }
+        return tableView;
+	}
+	private void createPopup(String s) {
+		
+		Stage stage = new Stage();
+		stage.setTitle("Log detail");
+
+		Text text = new Text(s);
+
+		ScrollPane scrollPane = new ScrollPane();
+		scrollPane.setContent(text);
+		Scene scene = new Scene(scrollPane, 600, 600);
+
+		stage.setScene(scene);
+		stage.show();	
 	}
 }

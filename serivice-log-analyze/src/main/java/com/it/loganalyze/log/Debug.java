@@ -40,7 +40,12 @@ public class Debug extends Log implements GetField {
 
 	@Override
 	public ArrayList<String> getMainField() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> mainKeys = new ArrayList<>(Arrays.asList(
+				"Time","Attackname","id","Msg","Severity"));
+		return mainKeys;
+	}
+
+	public LinkedHashMap<String, String> getLogLine() {
+		return logLine;
 	}
 }

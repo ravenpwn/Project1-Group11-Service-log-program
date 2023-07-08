@@ -2,11 +2,12 @@ package com.it.loganalyze.util;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,7 +30,7 @@ public class Util {
 				dataBuilder.append(string+"\n");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.err.println("Error reading file: " + e.getMessage() );
 		} 
 		finally {
 			try {
@@ -83,5 +84,14 @@ public class Util {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public static String prettyPrintMap(Map<?, ?> map) {
+		StringBuilder sb = new StringBuilder();
+		for (Entry<?, ?> entry : map.entrySet()) {
+		    sb.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n\n");
+		}
+		String prettyPrint = sb.toString().trim();
+		return prettyPrint;
 	}
 }

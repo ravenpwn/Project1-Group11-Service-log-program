@@ -1,11 +1,9 @@
 package com.it.loganalyze.log;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import com.it.loganalyze.log.*;
 public class LogData {
 	private ArrayList<Log> data;
 	

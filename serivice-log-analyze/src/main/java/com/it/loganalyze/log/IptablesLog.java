@@ -22,6 +22,7 @@ public class IptablesLog extends Log implements GetField{
 		logLine = line;
 	}
 	
+	@Override
 	public LinkedHashMap<String, String> getLogLine() {
 		return logLine;
 	}

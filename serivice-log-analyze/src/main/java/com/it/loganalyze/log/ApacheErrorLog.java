@@ -40,7 +40,8 @@ public class ApacheErrorLog extends Log implements GetField {
 
 	@Override
 	public ArrayList<String> getMainField() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> mainKeys = new ArrayList<>(Arrays.asList(
+				"Timestamp", "configure", "Emerge_level", "Process_id","Client_Ip","Port"));
+		return mainKeys;
 	}
 }

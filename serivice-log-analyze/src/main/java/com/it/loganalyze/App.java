@@ -1,13 +1,11 @@
 package com.it.loganalyze;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.it.loganalyze.log.LogData;
 import com.it.loganalyze.util.CreateLog;
 import com.it.loganalyze.util.Util;
 
-import convertRawToJson.accessLogCode.createLogEntry;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -50,7 +48,7 @@ public class App extends Application {
 			primaryStage.setTitle("Service Log Analysis");
 			primaryStage.show();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Error starting app");
 		}
 	}
 	

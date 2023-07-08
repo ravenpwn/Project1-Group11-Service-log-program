@@ -33,19 +33,20 @@ public class ApacheAccessLog extends Log implements GetField {
 	public LocalDateTime getDate() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd HH:mm:ss zzz yyyy");
 	    LocalDateTime dateTime = LocalDateTime.parse(getField("Timestamp").substring(4), formatter);
-		// TODO Auto-generated method stub
+
 		return dateTime;
 	}
 
 	@Override
 	public String getSrcIp() {
-		// TODO Auto-generated method stub
 		return getField("Ip_address");
 	}
 
 	@Override
 	public ArrayList<String> getMainField() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> mainKeys = new ArrayList<>(Arrays.asList(
+				"Ip_address", "Timestamp", "HttpMethod",
+				"Url", "Status_code", "Bytesize", "UrlSource"));
+		return mainKeys;
 	}
 }

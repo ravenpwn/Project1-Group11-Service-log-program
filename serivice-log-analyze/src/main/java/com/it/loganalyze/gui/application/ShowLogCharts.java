@@ -5,16 +5,11 @@ import javafx.collections.ObservableList;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.HBox;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import javafx.application.Platform;
 import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.layout.Pane;
-import org.json.JSONObject;
 
 import com.it.loganalyze.log.Log;
 import com.it.loganalyze.log.LogData;
