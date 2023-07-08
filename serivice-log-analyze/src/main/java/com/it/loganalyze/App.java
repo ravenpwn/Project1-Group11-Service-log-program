@@ -1,10 +1,6 @@
 package com.it.loganalyze;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-
-import com.it.loganalyze.log.Log;
 import com.it.loganalyze.log.LogData;
 import com.it.loganalyze.util.CreateLog;
 import com.it.loganalyze.util.Util;

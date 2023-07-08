@@ -10,12 +10,12 @@
         <maven.compiler.source>20</maven.compiler.source>
         <maven.compiler.target>20</maven.compiler.target>
     </properties>
-    <!-- <repositories>
+   	<!-- <repositories>
         <repository>
             <id>external-libs</id>
-            <url>file://${project.basedir}/serivice-log-analyze/src/main/resources/external-libs</url>
+            <url>file://${project.basedir}/src/main/resources/external-libs</url>
         </repository>
-    </repositories>  -->
+    </repositories> -->
     <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>
