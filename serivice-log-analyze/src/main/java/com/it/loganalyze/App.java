@@ -48,10 +48,10 @@ public class App extends Application {
 			primaryStage.setTitle("Service Log Analysis");
 			primaryStage.show();
 		} catch (IOException e) {
-			System.out.println("Error starting app");
+			System.err.println("Error starting app");
 		}
 	}
-	
+
 	private static void createLog() {
 		String[] paths = Util.readFile("src/main/resources/com/it/loganalyze/config/logFile.conf").split("\n");
 		try {
@@ -60,12 +60,13 @@ public class App extends Application {
 			iptablesLogData = CreateLog.createIptablesLog(paths[2].split("=")[1]);
 			modAudit = CreateLog.createAudit(paths[3].split("=")[1]);
 			modDebug = CreateLog.createDebug(paths[4].split("=")[1]);
-		}catch (IndexOutOfBoundsException e2) {
-			System.out.println("Got error while extracting paths from logFile.conf");
-		}catch (Exception e) {
+		} catch (IndexOutOfBoundsException e2) {
+			System.err.println("Got error while extracting paths from logFile.conf");
+		} catch (Exception e) {
+			System.err.println("Got error while loading log");
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		createLog();
 		launch(args);

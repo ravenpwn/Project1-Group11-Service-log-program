@@ -31,14 +31,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
 public class AppController {
 	private ArrayList<Button> btns = new ArrayList<>();
 	private String whatLog;
 	private TabPane tabPane = new TabPane();
 	private Tab tab1 = new Tab();
-	private Tab tab2 =  new Tab();
-	
+	private Tab tab2 = new Tab();
+
 	private LogData modsecurityAuditLog = App.getModSecurityAuditLog();
 	private LogData modsecurityDebugLog = App.getModSecurityDebugLog();
 	private LogData iptablesLogData = App.getIptablesLogData();
@@ -51,310 +50,301 @@ public class AppController {
 	private ShowLogTable debugLogTable = new ShowLogTable(modsecurityDebugLog, modsecurityDebugLog.getMainKeys());
 	@FXML
 	private StackPane infoPane;
-	
-    @FXML
-    private VBox apacheBox;
 
-    @FXML
-    private Button apacheGraphBtn;
+	@FXML
+	private VBox apacheBox;
 
-    @FXML
-    private Label apacheLabel;
+	@FXML
+	private Button apacheGraphBtn;
 
-    @FXML
-    private Button apacheTableBtn;
+	@FXML
+	private Label apacheLabel;
 
-    @FXML
-    private DatePicker dateSearch;
-    
-    @FXML
-    private Label dashboardLabel;
-    
-    @FXML
-    private ScrollPane detailInfoPane;
-    
-    @FXML
-    private TextField ipSearch;
+	@FXML
+	private Button apacheTableBtn;
 
-    @FXML
-    private VBox iptablesBox;
+	@FXML
+	private DatePicker dateSearch;
 
-    @FXML
-    private Button iptablesGraphBtn;
+	@FXML
+	private Label dashboardLabel;
 
-    @FXML
-    private Label iptablesLabel;
+	@FXML
+	private ScrollPane detailInfoPane;
 
-    @FXML
-    private Button iptablesTableBtn;
+	@FXML
+	private TextField ipSearch;
 
-    @FXML
-    private VBox modsecBox;
+	@FXML
+	private VBox iptablesBox;
 
-    @FXML
-    private Button modsecGraphBtn;
+	@FXML
+	private Button iptablesGraphBtn;
 
-    @FXML
-    private Label modsecLabel;
+	@FXML
+	private Label iptablesLabel;
 
-    @FXML
-    private Button modsecTableBtn;
+	@FXML
+	private Button iptablesTableBtn;
 
-    @FXML
-    private FlowPane searchBar;
-    
-    @FXML
-    private Button searchBtn;
-	
+	@FXML
+	private VBox modsecBox;
 
-    @FXML
-    void apacheGraphBtnPressed(ActionEvent event) {
-        if (searchBar.isVisible()) {
-            searchBar.setVisible(false);
-        }
-        displaySelectedBtn(apacheGraphBtn);
+	@FXML
+	private Button modsecGraphBtn;
 
-        // Create the charts
-        ShowLogCharts showLogCharts = new ShowLogCharts(apacheAccess, "Ip_address", "Timestamp");
-        HBox hbox = showLogCharts.createCharts();
+	@FXML
+	private Label modsecLabel;
 
-        // Display the charts in the infoPane
-        infoPane.getChildren().set(0, hbox);
-    }
+	@FXML
+	private Button modsecTableBtn;
 
+	@FXML
+	private FlowPane searchBar;
 
+	@FXML
+	private Button searchBtn;
 
-    @FXML
-    void apacheLabelClick(MouseEvent event) {
-    	whatLog = "apache";
-    	showButton(0);
-    }
+	@FXML
+	void apacheGraphBtnPressed(ActionEvent event) {
+		if (searchBar.isVisible()) {
+			searchBar.setVisible(false);
+		}
+		displaySelectedBtn(apacheGraphBtn);
 
-    @FXML
-    void apacheTablePressed(ActionEvent event) {
-    	if(!searchBar.isVisible()) {
-    		searchBar.setVisible(true);
-    	}
-    	displaySelectedBtn(apacheTableBtn);	
-    	
-    	try {
-    		tab1.setText("Access.log");
-    		tab2.setText("Error.log");
+		// Create the charts
+		ShowLogCharts showLogCharts = new ShowLogCharts(apacheAccess, "Ip_address", "Timestamp");
+		HBox hbox = showLogCharts.createCharts();
+
+		// Display the charts in the infoPane
+		infoPane.getChildren().set(0, hbox);
+	}
+
+	@FXML
+	void apacheLabelClick(MouseEvent event) {
+		whatLog = "apache";
+		showButton(0);
+	}
+
+	@FXML
+	void apacheTablePressed(ActionEvent event) {
+		if (!searchBar.isVisible()) {
+			searchBar.setVisible(true);
+		}
+		displaySelectedBtn(apacheTableBtn);
+
+		try {
+			tab1.setText("Access.log");
+			tab2.setText("Error.log");
 			tab1.setContent(attachDetail(apacheAccessLogTable.geTableView()));
 			tab2.setContent(attachDetail(apacheErrorLogTable.geTableView()));
 		} catch (IOException e) {
 			System.err.println("Error while creating table");
 		}
-    	
-    	showTable(tabPane);
-    }
 
-    @FXML
-    void dashboardClick(MouseEvent event) {
-    	if(searchBar.isVisible()) {
-    		searchBar.setVisible(false);
-    	}
-    	showButton(6);
-    	
-    }
+		showTable(tabPane);
+	}
 
-    @FXML
-    void iptablesGraphBtnPressed(ActionEvent event) {
-        if (searchBar.isVisible()) {
-            searchBar.setVisible(false);
-        }
-        displaySelectedBtn(iptablesGraphBtn);
+	@FXML
+	void dashboardClick(MouseEvent event) {
+		if (searchBar.isVisible()) {
+			searchBar.setVisible(false);
+		}
+		showButton(6);
 
-        // Create the charts
-        ShowLogCharts showLogCharts = new ShowLogCharts(iptablesLogData, "Source ip address (SRC)", "Date");
-        HBox hbox = showLogCharts.createCharts();
+	}
 
-        // Display the charts in the infoPane
-        infoPane.getChildren().set(0, hbox);
-    }
+	@FXML
+	void iptablesGraphBtnPressed(ActionEvent event) {
+		if (searchBar.isVisible()) {
+			searchBar.setVisible(false);
+		}
+		displaySelectedBtn(iptablesGraphBtn);
 
+		// Create the charts
+		ShowLogCharts showLogCharts = new ShowLogCharts(iptablesLogData, "Source ip address (SRC)", "Date");
+		HBox hbox = showLogCharts.createCharts();
 
-    @FXML
-    void iptablesLabelClick(MouseEvent event) {
-    	whatLog = "iptables";
-    	showButton(2);
-    }
+		// Display the charts in the infoPane
+		infoPane.getChildren().set(0, hbox);
+	}
 
-    @FXML
-    void iptablesTablePressed(ActionEvent event) {
-    	if(!searchBar.isVisible()) {
-    		searchBar.setVisible(true);
-    	}
-    	displaySelectedBtn(iptablesTableBtn);
-    	
-    	try {
+	@FXML
+	void iptablesLabelClick(MouseEvent event) {
+		whatLog = "iptables";
+		showButton(2);
+	}
+
+	@FXML
+	void iptablesTablePressed(ActionEvent event) {
+		if (!searchBar.isVisible()) {
+			searchBar.setVisible(true);
+		}
+		displaySelectedBtn(iptablesTableBtn);
+
+		try {
 			showTable(attachDetail(iptablesLogTable.geTableView()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("Error while creating table");
 		}
-    }
+	}
 
-    @FXML
-    void modsecGraphBtnPressed(ActionEvent event) {
-        if (searchBar.isVisible()) {
-            searchBar.setVisible(false);
-        }
-        displaySelectedBtn(modsecGraphBtn);
+	@FXML
+	void modsecGraphBtnPressed(ActionEvent event) {
+		if (searchBar.isVisible()) {
+			searchBar.setVisible(false);
+		}
+		displaySelectedBtn(modsecGraphBtn);
 
-        // Create the charts
-        ShowLogCharts showLogCharts = new ShowLogCharts(modsecurityAuditLog, "remote_address", "Timestamp");
-        HBox hbox = showLogCharts.createCharts();
+		// Create the charts
+		ShowLogCharts showLogCharts = new ShowLogCharts(modsecurityAuditLog, "remote_address", "Timestamp");
+		HBox hbox = showLogCharts.createCharts();
 
-        // Display the charts in the infoPane
-        infoPane.getChildren().set(0, hbox);
-    }
+		// Display the charts in the infoPane
+		infoPane.getChildren().set(0, hbox);
+	}
 
+	@FXML
+	void modsecLabelClick(MouseEvent event) {
+		whatLog = "modsec";
+		showButton(4);
+	}
 
+	@FXML
+	void modsecTablePressed(ActionEvent event) {
+		if (!searchBar.isVisible()) {
+			searchBar.setVisible(true);
+		}
+		displaySelectedBtn(modsecTableBtn);
 
-    @FXML
-    void modsecLabelClick(MouseEvent event) {
-    	whatLog = "modsec";
-    	showButton(4);
-    }
-
-    @FXML
-    void modsecTablePressed(ActionEvent event) {
-    	if(!searchBar.isVisible()) {
-    		searchBar.setVisible(true);
-    	}
-    	displaySelectedBtn(modsecTableBtn);	
-    	
-    	try {
-    		tab1.setText("Audit.log");
-    		tab2.setText("Debug.log");
+		try {
+			tab1.setText("Audit.log");
+			tab2.setText("Debug.log");
 			tab1.setContent(attachDetail(auditLogTable.geTableView()));
 			tab2.setContent(attachDetail(debugLogTable.geTableView()));
 		} catch (IOException e) {
 			System.err.println("Error while creating table");
 		}
-    	
-    	showTable(tabPane);
-    }
-    
-    @FXML
-    void searchBtnPressed() {
-    	String ipString = ipSearch.getText();
-    	LocalDate date;
-    	try {
-    		date = dateSearch.getValue();
-    	} catch (Exception e) {
-			e.printStackTrace();
-    		date = null;
-		}
-    	System.out.println(date);
-    	System.out.println(ipString);
-    	HashMap<String, Object> searchMap =  new HashMap<>();
-    	searchMap.put("Date", date);
-    	searchMap.put("Src IP address", ipString);
-    	search(searchMap);
-    }
-   
-	@FXML
-    void initialize() {
-    	btns.add(apacheTableBtn);
-    	btns.add(apacheGraphBtn);
-    	btns.add(iptablesTableBtn);
-    	btns.add(iptablesGraphBtn);
-    	btns.add(modsecTableBtn);
-    	btns.add(modsecGraphBtn);
-    	
-    	bindVisible();
-    	searchBar.setHgap(10);
-    	tabPane.getTabs().add(tab1);
-    	tabPane.getTabs().add(tab2);
-    	tab1.setClosable(false);
-    	tab2.setClosable(false);
-        tabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
-            if (newTab == tab1) {
-            	searchBar.setVisible(true);
-            } else if (newTab == tab2) {
-                searchBar.setVisible(true);
-            }
-        });
-    }
-    
-    void bindVisible() {
-    	searchBar.setVisible(false);
-    	searchBar.managedProperty().bind(searchBar.visibleProperty());
-    	
-    	for (Button b:btns) {
-    		b.setVisible(false);
-    		b.managedProperty().bind(b.visibleProperty());
-    	}
-    }
-    
-    
-    void displaySelectedBtn(Button b) {
-    	for(Button btn: btns) {
-    		if(b.equals(btn)) {
-    			btn.setStyle("-fx-background-color: #1299f6");    			
-    		} else {
-    			btn.setStyle("-fx-background-color: #dddddd"); 
-    		}
-    	}
-    }
-    
-    void showButton(int index)  {
-    	for (int i = 0; i < btns.size(); i++) {
-    		Button b = btns.get(i);
-    		if(!b.isVisible() && (i==index || i==index+1)) {
-    			b.setVisible(true);
-    		} else if(btns.get(i).isVisible() && (i!=index &&i!=index+1)) {
-    			b.setVisible(false);
-    		}
-    	}
-    }
-    
-    private void showTable(Node node) {
-    	infoPane.getChildren().set(0, (Node) node);
+
+		showTable(tabPane);
 	}
-    
+
+	@FXML
+	void searchBtnPressed() {
+		String ipString = ipSearch.getText();
+		LocalDate date;
+		try {
+			date = dateSearch.getValue();
+		} catch (Exception e) {
+			date = null;
+		}
+		HashMap<String, Object> searchMap = new HashMap<>();
+		searchMap.put("Date", date);
+		searchMap.put("Src IP address", ipString);
+		search(searchMap);
+	}
+
+	@FXML
+	void initialize() {
+		btns.add(apacheTableBtn);
+		btns.add(apacheGraphBtn);
+		btns.add(iptablesTableBtn);
+		btns.add(iptablesGraphBtn);
+		btns.add(modsecTableBtn);
+		btns.add(modsecGraphBtn);
+
+		bindVisible();
+		searchBar.setHgap(10);
+		tabPane.getTabs().add(tab1);
+		tabPane.getTabs().add(tab2);
+		tab1.setClosable(false);
+		tab2.setClosable(false);
+		tabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
+			if (newTab == tab1) {
+				searchBar.setVisible(true);
+			} else if (newTab == tab2) {
+				searchBar.setVisible(true);
+			}
+		});
+	}
+
+	void bindVisible() {
+		searchBar.setVisible(false);
+		searchBar.managedProperty().bind(searchBar.visibleProperty());
+
+		for (Button b : btns) {
+			b.setVisible(false);
+			b.managedProperty().bind(b.visibleProperty());
+		}
+	}
+
+	void displaySelectedBtn(Button b) {
+		for (Button btn : btns) {
+			if (b.equals(btn)) {
+				btn.setStyle("-fx-background-color: #1299f6");
+			} else {
+				btn.setStyle("-fx-background-color: #dddddd");
+			}
+		}
+	}
+
+	void showButton(int index) {
+		for (int i = 0; i < btns.size(); i++) {
+			Button b = btns.get(i);
+			if (!b.isVisible() && (i == index || i == index + 1)) {
+				b.setVisible(true);
+			} else if (btns.get(i).isVisible() && (i != index && i != index + 1)) {
+				b.setVisible(false);
+			}
+		}
+	}
+
+	private void showTable(Node node) {
+		infoPane.getChildren().set(0, (Node) node);
+	}
+
 	public void search(HashMap<String, Object> searchMap) {
 		switch (whatLog) {
-		case "apache":
-			if(tabPane.getSelectionModel().getSelectedItem().equals(tab1)) {				
-				apacheAccessLogTable.filterByFields(searchMap);
-			} else {
-				apacheErrorLogTable.filterByFields(searchMap);
-			}
-			break;
-		case "iptables":
-			iptablesLogTable.filterByFields(searchMap);
-			break;
-		case "modsec":
-			if(tabPane.getSelectionModel().getSelectedItem().equals(tab1)) {				
-				auditLogTable.filterByFields(searchMap);
-			} else {
-				debugLogTable.filterByFields(searchMap);
-			}
-			break;
-		default:
-			break;
+			case "apache":
+				if (tabPane.getSelectionModel().getSelectedItem().equals(tab1)) {
+					apacheAccessLogTable.filterByFields(searchMap);
+				} else {
+					apacheErrorLogTable.filterByFields(searchMap);
+				}
+				break;
+			case "iptables":
+				iptablesLogTable.filterByFields(searchMap);
+				break;
+			case "modsec":
+				if (tabPane.getSelectionModel().getSelectedItem().equals(tab1)) {
+					auditLogTable.filterByFields(searchMap);
+				} else {
+					debugLogTable.filterByFields(searchMap);
+				}
+				break;
+			default:
+				break;
 		}
 	}
+
 	private TableView<Log> attachDetail(TableView<Log> tableView) {
-        if (tableView.getRowFactory() == null) {
-        	tableView.setRowFactory(tv -> {
-        		TableRow<Log> row = new TableRow<>();
-        		row.setOnMouseClicked(event -> {
-        			if (event.getClickCount() == 2 && !row.isEmpty()) { 
-        				Log rowData = row.getItem();
-        				createPopup(Util.prettyPrintMap(rowData.getLogLine()));
-        			}
-        		});
-        		return row;
-        	});
-        }
-        return tableView;
+		if (tableView.getRowFactory() == null) {
+			tableView.setRowFactory(tv -> {
+				TableRow<Log> row = new TableRow<>();
+				row.setOnMouseClicked(event -> {
+					if (event.getClickCount() == 2 && !row.isEmpty()) {
+						Log rowData = row.getItem();
+						createPopup(Util.prettyPrintMap(rowData.getLogLine()));
+					}
+				});
+				return row;
+			});
+		}
+		return tableView;
 	}
+
 	private void createPopup(String s) {
-		
+
 		Stage stage = new Stage();
 		stage.setTitle("Log detail");
 
@@ -365,6 +355,6 @@ public class AppController {
 		Scene scene = new Scene(scrollPane, 600, 600);
 
 		stage.setScene(scene);
-		stage.show();	
+		stage.show();
 	}
 }

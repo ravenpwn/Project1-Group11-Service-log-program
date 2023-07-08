@@ -19,7 +19,7 @@ public class Util {
 	private static JsonObject iptablesRegexMap;
 	private static SecureRandom random = new SecureRandom();
 	public static String readFile(String filePath) {
-		FileReader file;
+		FileReader file = null;
 		BufferedReader reader = null;
 		StringBuilder dataBuilder = new StringBuilder("");
 		try {
@@ -35,11 +35,17 @@ public class Util {
 		finally {
 			try {
 				if (reader != null) {
-					reader.close();
+					file.close();
 				}
 			} catch (IOException e) {
-				// Log the exception
 				System.err.println("Error closing reader: " + e.getMessage());
+			}
+			try {
+				if (file != null) {
+					file.close();
+				}
+			} catch (IOException e) {
+				System.err.println("Error closing file: " + e.getMessage());
 			}
 		}
 		
@@ -72,16 +78,32 @@ public class Util {
 	}
 	
 	public static void writeToJsonFile(Object obj) {
+		BufferedWriter writer = null;
+		FileWriter fileWriter = null;
 		try {
-			FileWriter fileWriter = new FileWriter("src/main/resources/com/it/loganalyze/tmp" + random.nextInt()+ ".json");
-			BufferedWriter writer = new BufferedWriter(fileWriter);
+			fileWriter = new FileWriter("src/main/resources/com/it/loganalyze/tmp" + random.nextInt()+ ".json");
+			writer = new BufferedWriter(fileWriter);
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			String element = gson.toJson(obj);
 			writer.write(element);
-			writer.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.err.println("Error reading file: " + e.getMessage() );
+		} 
+		finally {
+			try {
+				if (writer != null) {
+					writer.close();
+				}
+			} catch (IOException e) {
+				System.err.println("Error closing writer: " + e.getMessage());
+			}
+			try {
+				if (fileWriter != null) {
+					fileWriter.close();
+				}
+			} catch (IOException e) {
+				System.err.println("Error closing file: " + e.getMessage());
+			}
 		}
 		
 	}
