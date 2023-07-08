@@ -56,7 +56,6 @@ public class JsonConverterForDebug {
             try {
                 Files.write(Paths.get(outputFile), json.toString().getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
             } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }

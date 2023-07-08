@@ -27,7 +27,7 @@ public class Convert {
                         lineNumber ++;
                 }
         }catch (IOException e){
-                e.printStackTrace();
+                System.out.println("Something has wrong");
         }
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -38,7 +38,7 @@ public class Convert {
         try (FileWriter fileWriter = new FileWriter(outputfile)){
             fileWriter.write(jsonString);
         }catch (IOException e){
-                e.printStackTrace();
+        		System.out.println("Something has wrong");
         }
 	}
 }

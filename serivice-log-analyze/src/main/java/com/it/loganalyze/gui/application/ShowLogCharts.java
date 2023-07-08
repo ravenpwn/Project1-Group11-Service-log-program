@@ -14,6 +14,7 @@ import javafx.scene.chart.XYChart;
 import com.it.loganalyze.log.Log;
 import com.it.loganalyze.log.LogData;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -51,7 +52,7 @@ public class ShowLogCharts {
                     pieChartFX.updateChart(day);
                     timeSeriesChartFX.updateChart(day, true); // pass a flag to indicate that hourly data should be displayed
                 } catch (Exception e) {
-                    e.printStackTrace();
+                 
                 }
             });
 
@@ -59,7 +60,7 @@ public class ShowLogCharts {
             HBox hbox = new HBox(pieChart, timeSeriesChart);
             return hbox;
         } catch (Exception e) {
-            e.printStackTrace();
+          
         }
         return null;
     }
@@ -138,23 +139,29 @@ public class ShowLogCharts {
                     }
 
 
-                    // Parse the value as a date
+                 // Parse the value as a date
                     Date date = null;
                     if (value.contains("/")) {
-                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
-                        date = dateFormat1.parse(value);
+                        try {
+                            SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss.SSSSSS Z");
+                            date = dateFormat1.parse(value);
+                        } catch (ParseException e) {
+                            SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
+                            date = dateFormat2.parse(value);
+                        }
                     } else if (value.contains("ICT")) {
-                        SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-                        dateFormat2.setTimeZone(TimeZone.getTimeZone("Asia/Bangkok"));
-                        date = dateFormat2.parse(value);
-                    } else if (value.contains(":")) {
-                        SimpleDateFormat dateFormat3 = new SimpleDateFormat("MMM d HH:mm:ss");
+                        SimpleDateFormat dateFormat3 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+                        dateFormat3.setTimeZone(TimeZone.getTimeZone("Asia/Bangkok"));
                         date = dateFormat3.parse(value);
-                    } else {
-                        SimpleDateFormat dateFormat4 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss");
+                    } else if (value.contains(":")) {
+                        SimpleDateFormat dateFormat4 = new SimpleDateFormat("MMM d HH:mm:ss");
                         date = dateFormat4.parse(value);
+                    } else {
+                        SimpleDateFormat dateFormat5 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss");
+                        date = dateFormat5.parse(value);
                     }
                     SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+
                     String currentDay = dayFormat.format(date);
 
                     // Check if the date is within the given day
@@ -227,21 +234,27 @@ public class ShowLogCharts {
 
                     // Parse the value as a date
                     Date date = null;
-                    if (value.contains("/")) {    
-                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
-                        date = dateFormat1.parse(value);
+                    if (value.contains("/")) {
+                        try {
+                            SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss.SSSSSS Z");
+                            date = dateFormat1.parse(value);
+                        } catch (ParseException e) {
+                            SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
+                            date = dateFormat2.parse(value);
+                        }
                     } else if (value.contains("ICT")) {
-                        SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-                        dateFormat2.setTimeZone(TimeZone.getTimeZone("Asia/Bangkok"));
-                        date = dateFormat2.parse(value);
-                    } else if (value.contains(":")) {
-                        SimpleDateFormat dateFormat3 = new SimpleDateFormat("MMM d HH:mm:ss");
+                        SimpleDateFormat dateFormat3 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+                        dateFormat3.setTimeZone(TimeZone.getTimeZone("Asia/Bangkok"));
                         date = dateFormat3.parse(value);
-                    } else {
-                        SimpleDateFormat dateFormat4 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss");
+                    } else if (value.contains(":")) {
+                        SimpleDateFormat dateFormat4 = new SimpleDateFormat("MMM d HH:mm:ss");
                         date = dateFormat4.parse(value);
+                    } else {
+                        SimpleDateFormat dateFormat5 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss");
+                        date = dateFormat5.parse(value);
                     }
                     SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+
                     String day = dayFormat.format(date);
 
                     // Update the counts in the map
@@ -299,20 +312,26 @@ public class ShowLogCharts {
                     // Parse the value as a date
                     Date date = null;
                     if (value.contains("/")) {
-                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
-                        date = dateFormat1.parse(value);
+                        try {
+                            SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss.SSSSSS Z");
+                            date = dateFormat1.parse(value);
+                        } catch (ParseException e) {
+                            SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
+                            date = dateFormat2.parse(value);
+                        }
                     } else if (value.contains("ICT")) {
-                        SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-                        dateFormat2.setTimeZone(TimeZone.getTimeZone("Asia/Bangkok"));
-                        date = dateFormat2.parse(value);
-                    } else if (value.contains(":")) {
-                        SimpleDateFormat dateFormat3 = new SimpleDateFormat("MMM d HH:mm:ss");
+                        SimpleDateFormat dateFormat3 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+                        dateFormat3.setTimeZone(TimeZone.getTimeZone("Asia/Bangkok"));
                         date = dateFormat3.parse(value);
-                    } else {
-                        SimpleDateFormat dateFormat4 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss");
+                    } else if (value.contains(":")) {
+                        SimpleDateFormat dateFormat4 = new SimpleDateFormat("MMM d HH:mm:ss");
                         date = dateFormat4.parse(value);
+                    } else {
+                        SimpleDateFormat dateFormat5 = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss");
+                        date = dateFormat5.parse(value);
                     }
                     SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+
                     String currentDay = dayFormat.format(date);
 
                     // Check if the date is within the given day
