@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import java.util.LinkedHashMap;
 
-public class IptablesLog extends Log implements GetField {
+public class IptablesLog extends Log {
 	public LinkedHashMap<String, String> logLine = new LinkedHashMap<String, String>();
 	private final ArrayList<String> keys = new ArrayList<>(Arrays.asList(
 			"Date", "Host name", "Log type", "Time from boot", "Prefix", "Incoming interface (IN)",
